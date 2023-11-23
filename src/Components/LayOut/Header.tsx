@@ -22,7 +22,8 @@ const Header: React.FC = () => {
     return(
         <Container maxW={'1500px'}  py={5}>
             <Flex flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
-                <Image onClick={goToHome} cursor={'pointer'} onMouseEnter={hoverHandler} onMouseLeave={leaveMouseHandler} src={hovered ? HoverLogoPng : LogoPng} alt='Snap Fiesta' w={250}/>
+                {/* <Image onClick={goToHome} cursor={'pointer'} onMouseEnter={hoverHandler} onMouseLeave={leaveMouseHandler} src={hovered ? HoverLogoPng : LogoPng} alt='Snap Fiesta' w={250}/> */}
+                <Heading to={'/'} as={Link}>SnapFiesta</Heading>
                 <HStack spacing={10} >
                     <Text fontWeight={'medium'} as={NavLink} to={'/inspiration'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Inspiration</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Our Artists</Text>
@@ -36,9 +37,9 @@ const Header: React.FC = () => {
                         {/* <PhoneIcon color='gray.300' /> */}
                         <SearchIcon color={'red.400'}/>
                         </InputLeftElement>
-                        <Input type='tel' placeholder='Search for anything...' rounded={'full'} focusBorderColor='red.400'/>
+                        <Input type='tel' placeholder='Search...' rounded={'full'} focusBorderColor='red.400' backgroundColor={'#E2E8F0'}/>
                     </InputGroup>
-                    <Image src={fakeAvatar} boxSize={70} rounded={'full'} objectFit={"cover"} alt='avatar'/>
+                    <Image src={fakeAvatar} boxSize={50} rounded={'full'} objectFit={"cover"} alt='avatar'/>
                 </Flex>               
             </Flex>
         </Container>

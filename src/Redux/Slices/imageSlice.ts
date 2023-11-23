@@ -8,7 +8,7 @@ const client = createClient(KEY)
 const query:string = 'Nature'
 
 type ImagesState = {
-    images: Image[]
+    images: Photo[]
     error: string | null
     isLoading: boolean
 }
@@ -19,12 +19,19 @@ const initialState: ImagesState = {
     isLoading: false
 }
 
-// const photos = await client.photos.curated({ per_page: 10 })
 export const fetchImages = createAsyncThunk<Photo[], void, {rejectValue: string}>('images/fetchImages', async (_, {rejectWithValue}) => {
-    const res = await client.photos.curated({per_page: 10}) as Photos
-    const data = res.photos
-    console.log(res.photos)
-    return res.photos
+    try{
+        const res = await client.photos.curated({per_page: 10}) as Photos
+        const data = res.photos
+        if(!data)
+            throw new Error('error has accured')
+        return data
+    }catch(e){
+        if(e instanceof Error)
+            return rejectWithValue(e.message)
+        else
+            return rejectWithValue('Error has accured')
+    }
 })
 
 
@@ -38,7 +45,13 @@ const photoSlice = createSlice({
         builder.
         addCase(fetchImages.fulfilled, (state, action) => {
             console.log(action.payload)
-            // state.images = action.payload?.photos
+            state.images = action.payload
+            state.isLoading = false
+            state.error = null
+        })
+        .addCase(fetchImages.pending, (state, action) => {
+            state.error = null
+            state.isLoading = true
         })
     }
 })
