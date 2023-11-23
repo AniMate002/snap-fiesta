@@ -2,13 +2,14 @@ import { Box, Image, Card, CardHeader, Flex, IconButton, Avatar, CardBody, Text,
 import { Photo } from 'pexels'
 import { Link } from 'react-router-dom'
 import ImageAnimated from './ImageAnimated'
+import { PhotoWithHashTags } from '../../Redux/Slices/imageSlice'
 
-interface ImageCardProps extends Photo {}
+interface ImageCardProps extends PhotoWithHashTags {}
 
-const ImageCard:React.FC<ImageCardProps> = ({id, photographer, src, alt, liked, photographer_url, avg_color}) => (
+const ImageCard:React.FC<ImageCardProps> = ({id, photographer, src, alt, liked, photographer_url, avg_color, hashTags}) => (
     <Card maxW='md' border={'none'} shadow={'none'}>
         <CardBody>
-            <ImageAnimated photographer={photographer} src={src} alt={alt} avg_color={avg_color}/>
+            <ImageAnimated photographer={photographer} src={src} alt={alt} avg_color={avg_color} hashTags={hashTags}/>
             <Flex gap='4'>
                 {/* <Avatar name={photographer}/> */}
                 <Box>

@@ -2,13 +2,18 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {createClient} from 'pexels'
 import { Image, chooseRandomHashtags } from '../types'
 import {Photos, Photo} from 'pexels/dist/types'
+import { AriaAttributes } from 'react'
 
 const KEY:string = 'bsRsiBMCCMWqV1vwrqCUTkXwfkz8e8DKwt4xqXa2Lthfsr3DQ8xh4NMF'
 const client = createClient(KEY)
 const query:string = 'Nature'
 
+export interface PhotoWithHashTags extends Photo{
+    hashTags: Array<String>
+}
+
 type ImagesState = {
-    images: Photo[]
+    images: PhotoWithHashTags[]
     error: string | null
     isLoading: boolean
 }
@@ -21,7 +26,7 @@ const initialState: ImagesState = {
 
 export const fetchImages = createAsyncThunk<Photo[], void, {rejectValue: string}>('images/fetchImages', async (_, {rejectWithValue}) => {
     try{
-        const res = await client.photos.curated({per_page: 22}) as Photos
+        const res = await client.photos.curated({per_page: 24}) as Photos
         const data = res.photos
         if(!data)
             throw new Error('error has accured')
