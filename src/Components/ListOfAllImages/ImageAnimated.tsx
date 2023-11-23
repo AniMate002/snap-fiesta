@@ -28,6 +28,7 @@ const ImageAnimated: React.FC<ImageAnimatedProps> = ({avg_color, src, alt, photo
     }
     return(
         <Box 
+                whileHover={{transform: 'translate(10px, -10px)', shadow: `-20px 20px 10px ${avg_color}`}}
                 ref={scope}
                 onClick={openImage}
                 as={motion.div} 
@@ -35,7 +36,7 @@ const ImageAnimated: React.FC<ImageAnimatedProps> = ({avg_color, src, alt, photo
                 overflow={'hidden'} 
                 mb={'10px'} 
                 shadow={`0px 0px ${avg_color}`} 
-                _hover={{'transform': 'translate(10px, -10px)', 'shadow': `-20px 20px 10px ${avg_color}`}} 
+                _hover={{'shadow': `-20px 20px 10px ${avg_color}`}} 
                 transition={'0.2s'}
                 >
                 <Image 
@@ -50,7 +51,7 @@ const ImageAnimated: React.FC<ImageAnimatedProps> = ({avg_color, src, alt, photo
                 <Modal onClose={closeImage} size={'xl'} isOpen={isOpen}>
                     <ModalOverlay/>
                     <ModalContent shadow={`-20px 20px 20px ${avg_color}`}  display={'flex'} alignItems={'center'} bgGradient='linear(to-br, white, #E2E8F0)'>
-                        <ModalBody>
+                        <ModalBody pt={8}>
                             <Image 
                             rounded={'xl'}
                             as={motion.img}
