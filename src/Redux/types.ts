@@ -9,6 +9,16 @@ export type Image = {
     photographer: string
 }
 
+export interface userI {
+    id?: string
+    email?: string
+    password?: string
+    name?: string
+    role?: string
+    avatar?: string
+}
+
+
 export const HASHTAGS: Array<String> = [
     "Serene", "Calm", "Joy", "Elegance", "Charm", "Grace", "Pure", "Tranquil", "Simplicity", "Peace",
     "Ease", "Minimal", "Gentle", "Quiet", "Kindness", "Warmth", "Bliss", "Harmony", "Gratitude", "Cheer",

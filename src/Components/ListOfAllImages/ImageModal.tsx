@@ -2,6 +2,7 @@ import { Modal, ModalBody, ModalOverlay, Box, Flex, Heading, Text, Image, ModalC
 import { DownloadIcon, CloseIcon} from '@chakra-ui/icons'
 import { ImageAnimatedProps } from './ImageAnimated'
 import { motion } from "framer-motion"
+import { url } from 'inspector'
 
 interface ImageModalProps extends ImageAnimatedProps{
     openImage: () => void
@@ -9,10 +10,30 @@ interface ImageModalProps extends ImageAnimatedProps{
     isOpen: boolean
 }
 
-const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photographer, src, alt, isOpen, hashTags}) => {
+const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photographer, src, alt, isOpen, hashTags, id}) => {
     const renderedHashTags = hashTags.map(hashTag => {
-        return <Text fontStyle={'italic'}>#{hashTag}</Text>
+        return <Text key={id} fontStyle={'italic'}>#{hashTag}</Text>
     })
+    const downloadHandler = (): void => {
+        const aTag = document.createElement('a');
+        aTag.href = src.large2x;
+        
+        // Extract the filename from the URL
+        // const fileName = src.large2x.split('/').pop() || 'downloaded-image';
+        
+        aTag.setAttribute('download', src.large2x);
+        aTag.setAttribute('target', '_blank'); // Set target attribute to "_blank"
+        console.log(src.large2x)
+        
+        // Append the anchor tag to the body
+        document.body.appendChild(aTag);
+        
+        // Trigger a click on the anchor tag
+        aTag.click();
+        aTag.remove()
+        // Remove the anchor tag from the body
+        // document.body.removeChild(aTag);
+    };
     return(
         <Modal onClose={closeImage} size={'xl'} isOpen={isOpen}>
                     <ModalOverlay/>
@@ -39,7 +60,7 @@ const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photograph
                             </Box>
                             <Box mt={2} display={'flex'} alignItems={'center'} gap={2}>
                                 <Button bgColor={avg_color || "#ff436cff"} color={'white'} variant={'solid'}><Text mr={2} className="fa-regular fa-heart"></Text>Like</Button>
-                                <Button leftIcon={<DownloadIcon />} color={avg_color || '#ff436cff'} border={`2px solid ${avg_color}`} variant={'outline'}>Download</Button>
+                                <Button onClick={downloadHandler} leftIcon={<DownloadIcon />} color={avg_color || '#ff436cff'} border={`2px solid ${avg_color}`} variant={'outline'}>Download</Button>
                             </Box>
                         </ModalBody>
                         <ModalFooter>

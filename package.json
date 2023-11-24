@@ -16,6 +16,7 @@
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.6.2",
     "framer-motion": "^10.16.5",
     "pexels": "^1.4.0",
     "react": "^18.2.0",

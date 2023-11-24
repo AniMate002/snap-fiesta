@@ -8,14 +8,17 @@ export interface ImageAnimatedProps {
     avg_color: string | null
     src: {
         large2x: string
+        original: string
+        landscape: string
     }
     alt: string | null
     photographer: string
     hashTags: Array<String>
+    id: number
 }
 
 
-const ImageAnimated: React.FC<ImageAnimatedProps> = ({avg_color, src, alt, photographer, hashTags}) => {
+const ImageAnimated: React.FC<ImageAnimatedProps> = ({avg_color, src, alt, photographer, hashTags, id}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [visibleOverLay, setVisibleOverLay ] = useState(false)
     const [scope, animate] = useAnimate()
@@ -49,7 +52,7 @@ const ImageAnimated: React.FC<ImageAnimatedProps> = ({avg_color, src, alt, photo
                     objectFit='cover'
                     src={src.large2x}
                     alt={alt || `Photo made by: ${photographer}`} />
-                <ImageModal hashTags={hashTags} openImage={openImage} closeImage={closeImage} alt={alt} photographer={photographer} avg_color={avg_color} src={src} isOpen={isOpen}/>
+                <ImageModal id={id} hashTags={hashTags} openImage={openImage} closeImage={closeImage} alt={alt} photographer={photographer} avg_color={avg_color} src={src} isOpen={isOpen}/>
             </Box>
     )
 }
