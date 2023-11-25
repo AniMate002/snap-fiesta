@@ -46,8 +46,8 @@ const Header: React.FC = () => {
                             <Image src={user.avatar} boxSize={50} rounded={'full'} objectFit={"cover"} alt='avatar'/>
                         :
                             <Box display={'flex'} alignItems={'center'} gap={3}>
-                                <Text to='/auth' width={'max-content'} as={Link} color={'#ff436cff'} fontWeight={'bold'} rounded={'xl'} variant={'solid'}>Sign up</Text>
-                                <Button as={Link} to='/auth' border={'2px solid black'} rounded={'xl'} variant={'ghost'}>Log in</Button>
+                                <Text to='/auth?var=signUp' width={'max-content'} as={Link} color={'#ff436cff'} fontWeight={'bold'} rounded={'xl'} variant={'solid'}>Sign up</Text>
+                                <Button as={Link} to='/auth?var=logIn' border={'2px solid black'} rounded={'xl'} variant={'ghost'}>Log in</Button>
                             </Box>
 
                     }

@@ -18,6 +18,11 @@ export interface userI {
     avatar?: string
 }
 
+export interface formLogInI {
+    email: string
+    password: string
+}
+
 
 export const HASHTAGS: Array<String> = [
     "Serene", "Calm", "Joy", "Elegance", "Charm", "Grace", "Pure", "Tranquil", "Simplicity", "Peace",
