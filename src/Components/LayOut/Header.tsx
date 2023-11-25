@@ -1,4 +1,4 @@
-import {Box, Text, Heading, Flex, Image, HStack, Container, Stack, InputGroup, InputLeftElement, Input, InputRightElement, useStatStyles, Button} from '@chakra-ui/react'
+import {Box, Text, Heading, Flex, Image, HStack, Container, Stack, InputGroup, InputLeftElement, Input, InputRightElement, useStatStyles, Button, Avatar} from '@chakra-ui/react'
 import {SearchIcon} from '@chakra-ui/icons'
 import { NavLink, useNavigate } from 'react-router-dom'
 import LogoPng from '../../images/logo/logoPng.png'
@@ -43,7 +43,7 @@ const Header: React.FC = () => {
                     </InputGroup>
                     {
                         isAuth ? 
-                            <Image src={user.avatar} boxSize={50} rounded={'full'} objectFit={"cover"} alt='avatar'/>
+                            <Avatar src={user.avatar} size={'md'} name={user.name} rounded={'full'} objectFit={"cover"}/>
                         :
                             <Box display={'flex'} alignItems={'center'} gap={3}>
                                 <Text to='/auth?var=signUp' width={'max-content'} as={Link} color={'#ff436cff'} fontWeight={'bold'} rounded={'xl'} variant={'solid'}>Sign up</Text>

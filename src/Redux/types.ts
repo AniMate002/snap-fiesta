@@ -24,6 +24,11 @@ export interface formLogInI {
 }
 
 
+export interface formSignUp extends formLogInI {
+    name: string
+    avatar: string
+}
+
 export const HASHTAGS: Array<String> = [
     "Serene", "Calm", "Joy", "Elegance", "Charm", "Grace", "Pure", "Tranquil", "Simplicity", "Peace",
     "Ease", "Minimal", "Gentle", "Quiet", "Kindness", "Warmth", "Bliss", "Harmony", "Gratitude", "Cheer",
