@@ -3,6 +3,10 @@ import {Routes, Router, Route} from 'react-router-dom'
 import HomePage from "./Pages/HomePage";
 import InspirationPage from "./Pages/InspirationPage";
 import LayOut from "./Components/LayOut/LayOut";
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 
 import { useEffect } from 'react'
 import { fetchImages } from "./Redux/Slices/imageSlice";
@@ -26,10 +30,10 @@ const App: React.FC = () => {
   return(
     <>
       <Routes>
+        <Route path="/auth" element={<AuthPage />} />
         <Route path="/" element={<LayOut />}>
           <Route index element={<HomePage />}/>
           <Route path="/inspiration" element={<InspirationPage />}/>
-          <Route path="/auth/:type" element={<AuthPage />} />
         </Route>
       </Routes>
     </>
