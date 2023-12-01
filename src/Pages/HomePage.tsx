@@ -11,10 +11,12 @@ const HomePage: React.FC = () => {
     const [search, setSearch] = useSearchParams()
     const dispatch = useAppDispatch()
     useEffect(() => {
-        if(!search.get('type'))
-            dispatch(fetchImages(1))
-        else
+        if(search.get('type'))
             dispatch(searchImages({query: search.get('type') || '', page:1}))
+        else if(search.get('color'))
+            dispatch(searchImages({query: search.get('color') || '', page:1}))
+        else
+            dispatch(fetchImages(1))
     }, [search.get('type'), dispatch])
 
     return(

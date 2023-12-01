@@ -9,9 +9,12 @@ const Pagination:React.FC = () => {
     const [search, setSearch] = useSearchParams()
     const dispatch = useAppDispatch()
     const loadImagesClick = ():void => {
-        const query:string|null = search.get('type')
-        if(query)
-            dispatch(searchImages({query: query, page: Math.floor(images.length / 24) + 1}))
+        const queryType:string|null = search.get('type')
+        const queryColor:string|null = search.get('color')
+        if(queryType)
+            dispatch(searchImages({query: queryType, page: Math.floor(images.length / 24) + 1}))
+        else if(queryColor)
+            dispatch(searchImages({query: queryColor, page: Math.floor(images.length / 24) + 1}))
         else
             dispatch(fetchImages(Math.floor(images.length / 24) + 1))
     }
