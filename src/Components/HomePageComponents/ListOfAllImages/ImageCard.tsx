@@ -2,7 +2,7 @@ import { Box, Image, Card, CardHeader, Flex, IconButton, Avatar, CardBody, Text,
 import { Photo } from 'pexels'
 import { Link } from 'react-router-dom'
 import ImageAnimated from './ImageAnimated'
-import { PhotoWithHashTags } from '../../Redux/Slices/imageSlice'
+import { PhotoWithHashTags } from '../../../Redux/Slices/imageSlice'
 
 interface ImageCardProps extends PhotoWithHashTags {}
 

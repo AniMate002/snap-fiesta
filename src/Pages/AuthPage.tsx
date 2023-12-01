@@ -2,16 +2,14 @@ import { Box, Heading, Image, Text, Flex, Input, FormControl, Button, Divider } 
 import bg from '../images/bg.jpg'
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { useAnimate, motion} from 'framer-motion'
 import LogInComponent from "../Components/Auth/LogInComponent"
 import SignUpComponent from "../Components/Auth/SignUpComponent"
 import LoadingModalWindow from "../Components/LodaingModalWindow"
 import { useAppSelector } from "../Redux/hooks"
 
 const AuthPage:React.FC = () => {
-    const [scope, animate] = useAnimate()
     const [search, setSearch] = useSearchParams()
-    const { isAuth } = useAppSelector(state => state.user)
+    const { isAuth, isLoading } = useAppSelector(state => state.user)
     const navigate = useNavigate()
     useEffect(() => {
         if(!search.get('var'))
@@ -26,7 +24,7 @@ const AuthPage:React.FC = () => {
     }
     return(
         <Box display={'flex'} position={'relative'}>
-            <LoadingModalWindow />
+            <LoadingModalWindow isLoading={isLoading}/>
             <Box 
                 w={'50%'} 
                 h={'100vh'} 

@@ -35,7 +35,7 @@ const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photograph
         // document.body.removeChild(aTag);
     };
     return(
-        <Modal onClose={closeImage} size={'xl'} isOpen={isOpen}>
+        <Modal onClose={closeImage} size={'xl'} isOpen={isOpen} isCentered>
                     <ModalOverlay/>
                     <ModalContent shadow={`-20px 20px 20px ${avg_color}`}  display={'flex'} alignItems={'center'} bgGradient='linear(to-br, white, #E2E8F0)'>
                         <ModalBody pt={8}>

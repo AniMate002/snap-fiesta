@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 
 
 import { useEffect } from 'react'
-import { fetchImages } from "./Redux/Slices/imageSlice";
+import { fetchImages, searchImages } from "./Redux/Slices/imageSlice";
 import { useAppDispatch } from "./Redux/hooks";
 import { createUser } from "./Redux/Slices/userSlice";
 import AuthPage from "./Pages/AuthPage";
@@ -17,15 +17,9 @@ import AuthPage from "./Pages/AuthPage";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(fetchImages())
-    // dispatch(createUser({
-    //   "name": "Nicolas",
-    //   "email": "nico@gmail.com",
-    //   "password": "1234",
-    //   "avatar": "https://picsum.photos/800",
-    // }))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(fetchImages(1))
+  // }, [dispatch])
   
   return(
     <>

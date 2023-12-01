@@ -1,8 +1,12 @@
 import {Modal, ModalBody, ModalContent, ModalOverlay, useDisclosure, Text} from '@chakra-ui/react'
 import { useAppSelector } from '../Redux/hooks'
 
-const LoadingModalWindow:React.FC = () => {
-    const { isLoading } = useAppSelector(state => state.user)
+interface LoadingModalWindowProps {
+    isLoading: boolean
+}
+
+const LoadingModalWindow:React.FC<LoadingModalWindowProps> = ({isLoading}) => {
+    // const { isLoading } = useAppSelector(state => state.user)
     const { isOpen, onOpen, onClose } = useDisclosure()
     return(
         <Modal isOpen={isLoading} onClose={onClose} closeOnOverlayClick={false} isCentered>
