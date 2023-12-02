@@ -6,7 +6,6 @@ interface LoadingModalWindowProps {
 }
 
 const LoadingModalWindow:React.FC<LoadingModalWindowProps> = ({isLoading}) => {
-    // const { isLoading } = useAppSelector(state => state.user)
     const { isOpen, onOpen, onClose } = useDisclosure()
     return(
         <Modal isOpen={isLoading} onClose={onClose} closeOnOverlayClick={false} isCentered>

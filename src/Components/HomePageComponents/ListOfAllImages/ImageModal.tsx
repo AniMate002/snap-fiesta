@@ -16,14 +16,13 @@ const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photograph
     })
     const downloadHandler = (): void => {
         const aTag = document.createElement('a');
-        aTag.href = src.large2x;
+        aTag.href = src.original;
         
         // Extract the filename from the URL
         // const fileName = src.large2x.split('/').pop() || 'downloaded-image';
         
-        aTag.setAttribute('download', src.large2x);
+        aTag.setAttribute('download', src.original);
         aTag.setAttribute('target', '_blank'); // Set target attribute to "_blank"
-        console.log(src.large2x)
         
         // Append the anchor tag to the body
         document.body.appendChild(aTag);

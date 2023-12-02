@@ -7,7 +7,7 @@ import { Box, Button, Divider, Flex, Accordion,
 import { useState } from 'react'
 import { useSearchParams } from "react-router-dom"
 import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from "../../../Redux/hooks"
+import { useAppSelector } from "../../../Redux/hooks"
 import { fetchImages, resetImages, searchImages } from "../../../Redux/Slices/imageSlice"
 import FilterInNavigation from "./FilterInNavigation"
 
@@ -17,13 +17,10 @@ const Navigation:React.FC = () => {
     const {isOpen, onToggle} = useDisclosure()
     const [search, setSearch] = useSearchParams()
     const {images} = useAppSelector(state => state.images)
-    const dispatch = useAppDispatch()
     const changeTypeHandler = (type: string) => {
         setSearch({type: type})
     }
     const resetTypeHandler = ():void => {
-        dispatch(resetImages())
-        dispatch(fetchImages(1))
         setSearch({})
     }
     const checkBg = (value:string|null):string => {
@@ -33,10 +30,6 @@ const Navigation:React.FC = () => {
         else
             return 'white'
     }
-    useEffect(() => {
-        dispatch(resetImages())
-        dispatch(searchImages({page:1, query: search.get('type') || ""}))
-    }, [dispatch, search.get('type')])
     return(
         <Box mt={10} mb={5} width={'fit-content'} display={'block'} mx={'auto'}>
             <Flex  alignItems={'center'} justifyContent={'center'} gap={4} rounded={'full'} p={2}>
