@@ -34,7 +34,7 @@ export interface formFilterI {
     color: string
 }
 
-export const HASHTAGS: Array<String> = [
+export const HASHTAGS: Array<string> = [
     "Serene", "Calm", "Joy", "Elegance", "Charm", "Grace", "Pure", "Tranquil", "Simplicity", "Peace",
     "Ease", "Minimal", "Gentle", "Quiet", "Kindness", "Warmth", "Bliss", "Harmony", "Gratitude", "Cheer",
     "Radiant", "Delight", "Purity", "Genuine", "Wholesome", "Tender", "Soothing", "Natural", "Soft", "Sweet",
@@ -42,8 +42,8 @@ export const HASHTAGS: Array<String> = [
 ]
 
 
-export const chooseRandomHashtags = ():Array<String> => {
-    const arrayToReturn:Array<String> = [];
+export const chooseRandomHashtags = ():Array<string> => {
+    const arrayToReturn:Array<string> = [];
     for(let i = 1; i <= 5; i++){
         let randomNumber = Math.floor(Math.random() * 40);
         arrayToReturn.push(HASHTAGS[randomNumber])

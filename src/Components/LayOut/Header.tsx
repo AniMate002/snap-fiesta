@@ -1,4 +1,4 @@
-import {Box, Text, Heading, Flex, Image, HStack, Container, Stack, InputGroup, InputLeftElement, Input, InputRightElement, useStatStyles, Button, Avatar} from '@chakra-ui/react'
+import {Box, Text, Heading, Flex, Image, HStack, Container, Stack, InputGroup, InputLeftElement, Input, InputRightElement, useStatStyles, Button, Avatar, Divider} from '@chakra-ui/react'
 import {SearchIcon} from '@chakra-ui/icons'
 import { NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 import LogoPng from '../../images/logo/logoPng.png'
@@ -29,18 +29,18 @@ const Header: React.FC = () => {
         setSearch({search: searchQuery})
     }
     return(
-        <Container maxW={'1500px'}  py={5}>
-            <Flex flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
+        <Container maxW={'1500px'}  py={7}>
+            <Flex flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'} >
                 {/* <Image onClick={goToHome} cursor={'pointer'} onMouseEnter={hoverHandler} onMouseLeave={leaveMouseHandler} src={hovered ? HoverLogoPng : LogoPng} alt='Snap Fiesta' w={250}/> */}
-                <Heading to={'/'} as={Link}>SnapFiesta</Heading>
-                <HStack spacing={10} >
+                <Heading to={'/'} textAlign={'left'}  mt={-2} as={Link}>SnapFiesta</Heading>
+                <HStack ml={'50px'} spacing={10} alignItems={'center'}>
                     <Text fontWeight={'medium'} as={NavLink} to={'/inspiration'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Inspiration</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Our Artists</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Trending</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Styles</Text>
                 </HStack>
-                <Flex alignItems={'center'} gap={4}>
+                <Flex textAlign={'right'} alignItems={'center'} gap={4}>
                     <form onSubmit={e => formHandler(e)}>
                         <InputGroup>
                             <InputLeftElement pointerEvents='none'>

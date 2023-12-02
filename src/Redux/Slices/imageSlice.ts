@@ -10,7 +10,7 @@ const client = createClient(KEY)
 const query:string = 'Nature'
 
 export interface PhotoWithHashTags extends Photo{
-    hashTags: Array<String>
+    hashTags: Array<string>
 }
 
 interface searchImagesI {
@@ -23,13 +23,21 @@ type ImagesState = {
     filteredImages: PhotoWithHashTags[]
     error: string | null
     isLoading: boolean
+    inspiration: {
+        wordOfTheDay: string
+        imageOfTheDay: string
+    }
 }
 
 const initialState: ImagesState = {
     images: [],
     filteredImages: [],
     error: null,
-    isLoading: false
+    isLoading: false,
+    inspiration: {
+        wordOfTheDay: '',
+        imageOfTheDay: ''
+    }
 }
 
 
@@ -62,6 +70,19 @@ export const searchImages = createAsyncThunk<Photo[], searchImagesI, {rejectValu
     }
 })
 
+export const fetchPhotoOfTheDay = createAsyncThunk<Photo[], void, {rejectValue: string, state:{images:ImagesState}}>('images/fetchPhotoOfTheDay', async (_ ,{rejectWithValue, getState}) => {
+    try {
+        const res = await client.photos.search({query: getState().images.inspiration.wordOfTheDay, per_page: 1, page:1}) as Photos
+        const data = res.photos 
+        if(!data)
+            throw new Error('error has accured')
+        return data
+    } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Error has accured!'
+        return rejectWithValue(errorMessage) 
+    }
+})
+
 const photoSlice = createSlice({
     name: 'images',
     initialState,
@@ -74,6 +95,10 @@ const photoSlice = createSlice({
         filterImages: (state, action) => {
             // const newFiltered:PhotoWithHashTags[] = state.images.filter(item => item.hashTags.includes(action.payload.hashTags))
             // state.images = newFiltered
+        },
+        chooseWOTD: (state) => {
+            const hashTags = chooseRandomHashtags()
+            state.inspiration.wordOfTheDay = hashTags[0]
         }
     },
     extraReducers:(builder) => {
@@ -92,7 +117,7 @@ const photoSlice = createSlice({
             state.error = null
             console.log(state.images)
         })
-        .addCase(fetchImages.pending, (state, action) => {
+        .addCase(fetchImages.pending, (state) => {
             state.error = null
             state.isLoading = true
         })
@@ -110,12 +135,17 @@ const photoSlice = createSlice({
             state.error = null
             console.log(state.images)
         })
-        .addCase(searchImages.pending, (state, action) => {
+        .addCase(searchImages.pending, (state) => {
             state.error = null
             state.isLoading = true
+        })
+        .addCase(fetchPhotoOfTheDay.fulfilled, (state, action) => {
+            state.error = null
+            state.isLoading = false
+            state.inspiration.imageOfTheDay = action.payload[0].src.original
         })
     }
 })
 
 export default photoSlice.reducer
-export const { resetImages, filterImages } = photoSlice.actions
+export const { resetImages, filterImages, chooseWOTD } = photoSlice.actions
