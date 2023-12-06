@@ -1,19 +1,37 @@
-import { Container, Box } from "@chakra-ui/react";
+import { Container, Box, SimpleGrid, Flex, Heading, Text, Spinner } from "@chakra-ui/react";
 import React from "react";
 import Banner from "../Components/Inspiration/Banner";
 import { useEffect } from 'react'
-import { useAppDispatch } from "../Redux/hooks";
-import { chooseWOTD, fetchPhotoOfTheDay } from "../Redux/Slices/imageSlice";
+import { useAppDispatch, useAppSelector } from "../Redux/hooks";
+import { chooseWOTD, fetchPhotoOfTheDay, resetImages, searchImages } from "../Redux/Slices/imageSlice";
+import ImageCard from "../Components/HomePageComponents/ListOfAllImages/ImageCard";
+import Pagination from "../Components/HomePageComponents/Pagination";
 
 const InspirationPage:React.FC = () => {
     const dispatch = useAppDispatch()
+    const { wordOfTheDay } = useAppSelector(state => state.images.inspiration)
+    const { images, isLoading } = useAppSelector(state => state.images)
     useEffect(() => {
-        dispatch(fetchPhotoOfTheDay())
-            .then(() => dispatch(chooseWOTD()))
+        dispatch(chooseWOTD())
+        dispatch(resetImages())
     }, [dispatch])
+    useEffect(() => {
+        dispatch(fetchPhotoOfTheDay()).then(() => dispatch(searchImages({page: 1, query: wordOfTheDay})))
+    }, [wordOfTheDay, dispatch])
+    const renderedImages = images.map(image => {
+        return <ImageCard key={image.id} {...image}/>
+    })
     return(
         <Container maxW={'1500px'}>
             <Banner />
+            {/* <Flex w={'100%'} flexWrap={'wrap'} justifyContent={'space-between'}>
+                {renderedImages}
+            </Flex> */}
+            <SimpleGrid mb={10} columns={4}>
+                {renderedImages}
+            </SimpleGrid>
+            {isLoading ? <Spinner display={'block'} mx={'auto'} mb={20} color={'red.400'} size={'xl'} thickness={'5px'}/> : ''}
+            <Pagination WOTD={wordOfTheDay}/>
         </Container>
     )
 }

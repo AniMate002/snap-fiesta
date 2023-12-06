@@ -14,7 +14,7 @@ export interface PhotoWithHashTags extends Photo{
 }
 
 interface searchImagesI {
-    page: number
+    page?: number
     query: string
 }
 
@@ -57,9 +57,9 @@ export const fetchImages = createAsyncThunk<Photo[], number, {rejectValue: strin
     }
 })
 
-export const searchImages = createAsyncThunk<Photo[], searchImagesI, {rejectValue: string}>('images/searchImages',async ({query, page}, {rejectWithValue}) => {
+export const searchImages = createAsyncThunk<Photo[], searchImagesI, {rejectValue: string, state:{images: ImagesState}}>('images/searchImages',async ({query, page}, {rejectWithValue, getState}) => {
     try {
-        const res = await client.photos.search({query: query, per_page: 24, page: page}) as Photos
+        const res = await client.photos.search({query: query, per_page: 24, page: page || Math.floor(getState().images.images.length / 24) + 1}) as Photos
         const data = res.photos
         if(!data)
             throw new Error('Error')
@@ -143,6 +143,10 @@ const photoSlice = createSlice({
             state.error = null
             state.isLoading = false
             state.inspiration.imageOfTheDay = action.payload[0].src.original
+        })
+        .addCase(fetchPhotoOfTheDay.pending, (state) => {
+            state.error = null
+            state.isLoading = true
         })
     }
 })
