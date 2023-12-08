@@ -9,26 +9,28 @@ import { Link } from 'react-router-dom'
 
 const Footer: FC  = () => {
     return(
-        <Container maxW={'1500px'}>
-            <Flex justifyContent={'space-between'} alignItems={'center'}>
-                <Flex gap={4} fontSize={'sm'} color={'grey'}>
-                    <Text>© 2023 Snap Fiesta</Text>
+        <Container maxW={'1500px'} mb={5}>
+            <Flex justifyContent={'space-between'} alignItems={'center'} flexDirection={['column']} gap={[5]}>
+                <Flex gap={4} fontSize={'sm'} color={'grey'} alignItems={'center'}>
+                    <Text textAlign={'center'}>© 2023 Snap Fiesta</Text>
                     <Link to='/'>Terms</Link>
                     <Link to='/'>Privacy</Link>
                     <Link to='/'>Cookies</Link>
                 </Flex>
-                <Flex>
+                <Flex flexDir={['column']}>
+                    {/* <Heading color={'#ff436c'} fontSize={'1.1rem'} textAlign={'center'}>Made by <br /> Kiryl Shauchenka</Heading>
+                    <Image src={LogoPng} alt='Snap Fiesta' objectFit={'contain'} w={'250px'}/> */}
                     <Breadcrumb>
-                    <BreadcrumbItem>
-                        <Heading color={'#ff436c'} fontSize={'1.1rem'} textAlign={'center'} noOfLines={[1, 2]}>Made by <br /> Kiryl Shauchenka</Heading>
-                        {/* <BreadcrumbSeparator /> */}
-                    </BreadcrumbItem>
-                    <BreadcrumbItem>
-                        <Image src={LogoPng} alt='Snap Fiesta' objectFit={'contain'} w={'250px'}/>
-                    </BreadcrumbItem>
+                        <BreadcrumbItem>
+                            <Heading color={'#ff436c'} fontSize={['sm', '1.1rem']} textAlign={'center'}>Made by <br /> Kiryl Shauchenka</Heading>
+                            {/* <BreadcrumbSeparator /> */}
+                        </BreadcrumbItem>
+                        <BreadcrumbItem>
+                            <Image src={LogoPng} alt='Snap Fiesta' objectFit={'contain'} w={['120px', '250px']}/>
+                        </BreadcrumbItem>
                     </Breadcrumb>
                 </Flex>
-                <Flex gap={5} fontSize={'1.7rem'} color={'grey'}>
+                <Flex gap={5} fontSize={['xl', '1.7rem']} color={'grey'}>
                     <Text as={Link} to={'/'} className="fa-brands fa-instagram" _hover={{color:'#ff436c'}} transition={'all .2s ease'}></Text>
                     <Text as={Link} to={'/'} className="fa-brands fa-telegram" _hover={{color:'#ff436c'}} transition={'all .2s ease'}></Text>
                     <Text as={Link} to={'/'} className="fa-brands fa-discord" _hover={{color:'#ff436c'}} transition={'all .2s ease'}></Text>

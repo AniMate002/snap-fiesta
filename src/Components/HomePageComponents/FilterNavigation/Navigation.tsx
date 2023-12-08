@@ -3,13 +3,18 @@ import { Box, Button, Divider, Flex, Accordion,
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    useDisclosure, } from "@chakra-ui/react"
+    useDisclosure, 
+    InputGroup,
+    InputLeftElement,
+    Input } from "@chakra-ui/react"
 import { useState } from 'react'
 import { useSearchParams } from "react-router-dom"
 import { useEffect } from 'react'
 import { useAppSelector } from "../../../Redux/hooks"
 import { fetchImages, resetImages, searchImages } from "../../../Redux/Slices/imageSlice"
 import FilterInNavigation from "./FilterInNavigation"
+import NavForPhones from "./NavForPhones"
+import SearchForPhones from "./SearchForPhones"
 
 
 const Navigation:React.FC = () => {
@@ -31,8 +36,9 @@ const Navigation:React.FC = () => {
             return 'white'
     }
     return(
-        <Box mt={10} mb={5} width={'fit-content'} display={'block'} mx={'auto'}>
-            <Flex  alignItems={'center'} justifyContent={'center'} gap={4} rounded={'full'} p={2}>
+        <Box mt={10} mb={5} width={'auto'} display={'block'} mx={'auto'}>
+            <SearchForPhones display={['flex', 'flex', 'none']}/>
+            <Flex display={['none', 'none', 'flex']} alignItems={'center'} justifyContent={'center'} gap={4} rounded={'full'} p={2}>
                 <Button onClick={resetTypeHandler} bg={checkBg(null)} fontSize={'sm'} rounded={'full'}>Discover</Button>
                 <Divider orientation="vertical" borderWidth={1} height={5}/>
                 <Button onClick={() => changeTypeHandler('Nature')} fontSize={'sm'} bg={checkBg('Nature')} rounded={'full'}>Nature</Button>
@@ -45,6 +51,7 @@ const Navigation:React.FC = () => {
                 <Divider orientation="vertical" borderWidth={1} height={5}/>
                 <Button onClick={onToggle} leftIcon={<i className="fa-solid fa-arrow-up-wide-short"></i>} fontSize={'sm'} bg={'white'} border={'1px solid #cbd5e0ff'} _hover={{bg: 'white'}} rounded={'full'}>Filter</Button>
             </Flex>
+            <NavForPhones display={['', '', 'none']} changeTypeHandler={changeTypeHandler} checkBg={checkBg} resetTypeHandler={resetTypeHandler}/>
             <FilterInNavigation isOpen={isOpen}/>
         </Box>
     )

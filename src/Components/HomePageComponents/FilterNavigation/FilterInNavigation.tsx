@@ -41,8 +41,8 @@ const FilterInNavigation:React.FC<FilterInNavigationI> = ({isOpen}) => {
     }
     return(
         <Collapse in={isOpen}>
-            <Box p={1} display={'flex'} gap={5} py={7} as='form' onSubmit={e => formHandler(e)}>
-                <InputGroup>
+            <Box p={1} display={['none', 'none', 'flex']} gap={5} py={7} as='form' onSubmit={e => formHandler(e)} alignItems={'center'} justifyContent={'center'}>
+                <InputGroup width={'650px'}>
                     <InputLeftElement><Text color={'red.400'} className="fa-solid fa-magnifying-glass"></Text></InputLeftElement>
                     <Input value={form.hashTags} onChange={(e) => updateForm("hashTags", e.target.value)} focusBorderColor='red.400' _focus={{borderWidth: 1}} rounded={'full'} placeholder='Search' borderWidth={2}/>
                 </InputGroup>

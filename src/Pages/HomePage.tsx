@@ -25,8 +25,8 @@ const HomePage: React.FC = () => {
     return(
         <Container maxW={'1500px'}>
             <Navigation />
-            <ListOfImages />
-            <Pagination />
+            {/* <ListOfImages />
+            <Pagination /> */}
         </Container>
     )
 }

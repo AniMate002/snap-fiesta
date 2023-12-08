@@ -7,7 +7,7 @@ interface ColorPickerMenuI {
     search: URLSearchParams
 }
 
-const colors = ['red', 'orange', 'yellow', 'green', 'teal', 'blue', 'cyan', 'purple', 'pink', 'black'];
+export const colors = ['red', 'orange', 'yellow', 'green', 'teal', 'blue', 'cyan', 'purple', 'pink', 'black'];
 
 const ColorPickerMenu:React.FC<ColorPickerMenuI> = ({filterByColor, search}) => {
     const renderedColors = colors.map(color => {

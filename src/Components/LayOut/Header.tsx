@@ -1,4 +1,4 @@
-import {Box, Text, Heading, Flex, Image, HStack, Container, Stack, InputGroup, InputLeftElement, Input, InputRightElement, useStatStyles, Button, Avatar, Divider} from '@chakra-ui/react'
+import {Box, Text, Heading, Flex, Image, HStack, Container, Stack, InputGroup, InputLeftElement, Input, InputRightElement, useStatStyles, Button, Avatar, Divider, Collapse, useDisclosure} from '@chakra-ui/react'
 import {SearchIcon} from '@chakra-ui/icons'
 import { NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 import LogoPng from '../../images/logo/logoPng.png'
@@ -10,6 +10,7 @@ import { useAppSelector } from '../../Redux/hooks'
 import { resetImages, searchImages } from '../../Redux/Slices/imageSlice'
 
 const Header: React.FC = () => {
+    const { isOpen, onToggle } = useDisclosure()
     const [searchQuery, setSearchQuery] = useState<string>('')
     const [search, setSearch] = useSearchParams()
     const [hovered, setHovered] = useState<Boolean>(false)
@@ -29,20 +30,20 @@ const Header: React.FC = () => {
         setSearch({search: searchQuery})
     }
     return(
-        <Container maxW={'1500px'}  py={7}>
-            <Flex flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'} >
-                {/* <Image onClick={goToHome} cursor={'pointer'} onMouseEnter={hoverHandler} onMouseLeave={leaveMouseHandler} src={hovered ? HoverLogoPng : LogoPng} alt='Snap Fiesta' w={250}/> */}
-                <Heading to={'/'} textAlign={'left'}  mt={-2} as={Link}>SnapFiesta</Heading>
-                <HStack ml={'50px'} spacing={10} alignItems={'center'}>
-                    <Text fontWeight={'medium'} as={NavLink} to={'/inspiration'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Inspiration</Text>
-                    <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Our Artists</Text>
-                    <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
-                    <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Trending</Text>
-                    <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Styles</Text>
+        <Container maxW={'1500px'} py={7}>
+            <Flex  flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'} >
+                <Text onClick={onToggle} display={['inline-block', 'inline-block', 'none']} className="fa-solid fa-bars"><Heading ml={5} to={'/'} textAlign={'left'} fontSize={['2xl', '4xl']}  mt={[-1, -2]} as={Link}>SnapFiesta</Heading></Text>
+                <Heading to={'/'} textAlign={'left'} fontSize={['2xl', '4xl', '2xl']} display={['none', 'none', 'inline-block']} mt={[-1, -2]} as={Link}>SnapFiesta</Heading>
+                <HStack display={['none', 'none', 'flex']} ml={[0,0,2,'50px']} mr={[0,0,0,5,0]} spacing={10} alignItems={'center'}>
+                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/inspiration'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Inspiration</Text>
+                    <Text fontSize={['xl', 'xl', 'sm']} textAlign={'center'} fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Our Artists</Text>
+                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
+                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Trending</Text>
+                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Styles</Text>
                 </HStack>
                 <Flex textAlign={'right'} alignItems={'center'} gap={4}>
                     <form onSubmit={e => formHandler(e)}>
-                        <InputGroup>
+                        <InputGroup display={['none', 'none', 'none', 'block']}>
                             <InputLeftElement pointerEvents='none'>
                             {/* <PhoneIcon color='gray.300' /> */}
                             <SearchIcon color={'red.400'}/>
@@ -55,13 +56,23 @@ const Header: React.FC = () => {
                             <Avatar src={user.avatar} size={'md'} name={user.name} rounded={'full'} objectFit={"cover"}/>
                         :
                             <Box display={'flex'} alignItems={'center'} gap={3}>
-                                <Text to='/auth?var=signUp' width={'max-content'} as={Link} color={'#ff436cff'} fontWeight={'bold'} rounded={'xl'} variant={'solid'}>Sign up</Text>
-                                <Button as={Link} to='/auth?var=logIn' border={'2px solid black'} rounded={'xl'} variant={'ghost'}>Log in</Button>
+                                <Text fontSize={['', '', 'sm']} display={['none','inline']} to='/auth?var=signUp' width={'max-content'} as={Link} color={'#ff436cff'} fontWeight={'bold'} rounded={'xl'} variant={'solid'}>Sign up</Text>
+                                <Button fontSize={['', '', 'sm']}  as={Link} to='/auth?var=logIn' border={'2px solid black'} rounded={'xl'} variant={'ghost'}>Log in</Button>
                             </Box>
 
                     }
                 </Flex>               
             </Flex>
+            <Collapse in={isOpen} animateOpacity>
+                <Box display={['flex', 'flex', 'none']} flexDirection={'column'} gap={4} borderBottom={'2px solid grey'} py={5}>
+                    <Text fontWeight={'medium'} as={NavLink} to={'/inspiration'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Inspiration</Text>
+                    <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Our Artists</Text>
+                    <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
+                    <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Trending</Text>
+                    <Text fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Styles</Text>
+                    <Text fontWeight={'medium'} as={NavLink} to={'/auth?var=logIn'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Sing Up</Text>                          
+                </Box>
+            </Collapse>
         </Container>
     )
 }
