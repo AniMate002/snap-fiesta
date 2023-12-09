@@ -27,7 +27,7 @@ const Pagination:React.FC<paginationI> = ({WOTD}) => {
             dispatch(fetchImages(Math.floor(images.length / 24) + 1))
     }
     return(
-        <Button onClick={loadImagesClick} display={'block'} mx={'auto'} mt={10} mb={20} rounded={'xl'} bg={'red.400'} color={'white'}>
+        <Button onClick={loadImagesClick} display={'block'} mx={'auto'} mt={10} mb={[10, 20]} rounded={'xl'} bg={'red.400'} color={'white'}>
             Load more images
         </Button>
     )

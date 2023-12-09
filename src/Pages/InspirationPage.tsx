@@ -24,10 +24,7 @@ const InspirationPage:React.FC = () => {
     return(
         <Container maxW={'1500px'}>
             <Banner />
-            {/* <Flex w={'100%'} flexWrap={'wrap'} justifyContent={'space-between'}>
-                {renderedImages}
-            </Flex> */}
-            <SimpleGrid mb={10} columns={4}>
+            <SimpleGrid mb={10} columns={[1,2,3,4]} gap={10}>
                 {renderedImages}
             </SimpleGrid>
             {isLoading ? <Spinner display={'block'} mx={'auto'} mb={20} color={'red.400'} size={'xl'} thickness={'5px'}/> : ''}
