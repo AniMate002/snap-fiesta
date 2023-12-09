@@ -23,11 +23,11 @@ const AuthPage:React.FC = () => {
         setSearch({var: search.get('var') === 'logIn' ? 'signUp' : 'logIn'})
     }
     return(
-        <Box display={['block', 'flex']} position={'relative'}>
+        <Box display={['block', 'flex']} position={'relative'} alignItems={'stretch'}>
             <LoadingModalWindow isLoading={isLoading}/>
             <Box 
                 w={'50%'} 
-                h={'100vh'} 
+                h={'auto'}
                 bgPosition={'center'} 
                 bgSize={'cover'} 
                 bgImage={bg} p={10} 
