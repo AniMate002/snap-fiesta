@@ -23,7 +23,7 @@ const AuthPage:React.FC = () => {
         setSearch({var: search.get('var') === 'logIn' ? 'signUp' : 'logIn'})
     }
     return(
-        <Box display={'flex'} position={'relative'}>
+        <Box display={['block', 'flex']} position={'relative'}>
             <LoadingModalWindow isLoading={isLoading}/>
             <Box 
                 w={'50%'} 
@@ -31,12 +31,12 @@ const AuthPage:React.FC = () => {
                 bgPosition={'center'} 
                 bgSize={'cover'} 
                 bgImage={bg} p={10} 
-                display={'flex'} 
+                display={['none','none','flex']} 
                 flexDir={'column'} 
                 alignItems={'start'}>
                 <Heading to={'/'} as={Link} color={'white'} fontFamily={'revert-layer'} mb={10}>SnapFiesta</Heading>
-                <Text letterSpacing={3} color={'white'} fontWeight={'bold'} fontSize={'5xl'} as="h2">Welcome to SnapFiesta!</Text>
-                <Text color={'white'} fontSize={'lg'}>Unleash your creativity, frame the extraordinary. Our photo app is more than pixels; it's a canvas for your memories. Elevate every moment with seamless snapshots, turning life's journey into a breathtaking visual story.</Text>
+                <Text letterSpacing={[0,0,2,3]} color={'white'} fontWeight={'bold'} fontSize={['','','3xl','5xl']} as="h2">Welcome to SnapFiesta!</Text>
+                <Text color={'white'} fontSize={['','','md','lg']}>Unleash your creativity, frame the extraordinary. Our photo app is more than pixels; it's a canvas for your memories. Elevate every moment with seamless snapshots, turning life's journey into a breathtaking visual story.</Text>
                 <Flex mt={'auto'} gap={5} fontSize={'1.7rem'} color={'grey'} alignSelf={'center'}>
                     <Text as={Link} to={'/'} className="fa-brands fa-instagram" _hover={{color:'red.400'}} transition={'all .2s ease'}></Text>
                     <Text as={Link} to={'/'} className="fa-brands fa-telegram" _hover={{color:'red.400'}} transition={'all .2s ease'}></Text>
