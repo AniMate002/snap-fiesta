@@ -9,7 +9,7 @@ const ListOfImages: React.FC = () => {
     })
     return(
         <>
-            <SimpleGrid columns={4}>
+            <SimpleGrid columns={[1, 2, 3, 4]} w={'100%'} gap={10}>
                 {/* {isLoading ? <Heading>Loading...</Heading> : renderedImages} */}
                 {renderedImages}
             </SimpleGrid>

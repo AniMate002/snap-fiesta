@@ -47,7 +47,7 @@ const ImageAnimated: React.FC<ImageAnimatedProps> = ({avg_color, src, alt, photo
                 <Image 
                     as={motion.img}
                     m={'0 auto'}
-                    height={'600px'}
+                    height={['300px', '600px']}
                     w={'500px'}
                     objectFit='cover'
                     src={src.large2x}
