@@ -1,4 +1,4 @@
-import {Box, Text, Heading, Flex, Image, HStack, Container, Stack, InputGroup, InputLeftElement, Input, InputRightElement, useStatStyles, Button, Avatar, Divider, Collapse, useDisclosure} from '@chakra-ui/react'
+import {Box, Heading, Text, Flex, Image, HStack, Container, Stack, InputGroup, InputLeftElement, Input, InputRightElement, useStatStyles, Button, Avatar, Divider, Collapse, useDisclosure, Menu, MenuButton, MenuList, MenuItem, Popover, PopoverTrigger, Portal, PopoverContent, VStack} from '@chakra-ui/react'
 import {SearchIcon} from '@chakra-ui/icons'
 import { NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 import LogoPng from '../../images/logo/logoPng.png'
@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../Redux/hooks'
 import { resetImages, searchImages } from '../../Redux/Slices/imageSlice'
+import UserModal from './UserModal'
 
 const Header: React.FC = () => {
     const { isOpen, onToggle } = useDisclosure()
@@ -53,7 +54,7 @@ const Header: React.FC = () => {
                     </form>
                     {
                         isAuth ? 
-                            <Avatar src={user.avatar} size={'md'} name={user.name} rounded={'full'} objectFit={"cover"}/>
+                            <UserModal user={user}/>
                         :
                             <Box display={'flex'} alignItems={'center'} gap={3}>
                                 <Text fontSize={['', '', 'sm']} display={['none','inline']} to='/auth?var=signUp' width={'max-content'} as={Link} color={'#ff436cff'} fontWeight={'bold'} rounded={'xl'} variant={'solid'}>Sign up</Text>

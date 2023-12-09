@@ -67,7 +67,14 @@ export const logInUser = createAsyncThunk<userI, formLogInI, {rejectValue: strin
 const userSlice = createSlice({
     initialState,
     name: 'user',
-    reducers: {},
+    reducers: {
+        signOut: (state) => {
+            state.user = {}
+            state.isAuth = false
+            state.error = null
+            state.isLoading = false
+        }
+    },
     extraReducers: builder => {
         builder
         .addCase(createUser.fulfilled, (state, action) => {
@@ -98,3 +105,4 @@ const userSlice = createSlice({
 
 
 export default userSlice.reducer
+export const { signOut } = userSlice.actions
