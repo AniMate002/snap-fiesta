@@ -13,6 +13,7 @@ import { fetchImages, searchImages } from "./Redux/Slices/imageSlice";
 import { useAppDispatch } from "./Redux/hooks";
 import { createUser } from "./Redux/Slices/userSlice";
 import AuthPage from "./Pages/AuthPage";
+import MyProfilePage from "./Pages/MyProfilePage";
 
 
 const App: React.FC = () => {
@@ -28,6 +29,7 @@ const App: React.FC = () => {
         <Route path="/" element={<LayOut />}>
           <Route index element={<HomePage />}/>
           <Route path="/inspiration" element={<InspirationPage />}/>
+          <Route path="/myprofile" element={<MyProfilePage />} />
         </Route>
       </Routes>
     </>

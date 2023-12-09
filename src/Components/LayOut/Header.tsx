@@ -34,13 +34,13 @@ const Header: React.FC = () => {
         <Container maxW={'1500px'} py={7}>
             <Flex  flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'} >
                 <Text onClick={onToggle} display={['inline-block', 'inline-block', 'none']} className="fa-solid fa-bars"><Heading ml={5} to={'/'} textAlign={'left'} fontSize={['2xl', '4xl']}  mt={[-1, -2]} as={Link}>SnapFiesta</Heading></Text>
-                <Heading to={'/'} textAlign={'left'} fontSize={['2xl', '4xl', '2xl']} display={['none', 'none', 'inline-block']} mt={[-1, -2]} as={Link}>SnapFiesta</Heading>
+                <Heading to={'/'} textAlign={'left'} fontSize={['2xl', '4xl', '4xl']} display={['none', 'none', 'inline-block']} mt={[-1, -2]} as={Link}>SnapFiesta</Heading>
                 <HStack display={['none', 'none', 'flex']} ml={[0,0,2,'50px']} mr={[0,0,0,5,0]} spacing={10} alignItems={'center'}>
                     <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/inspiration'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Inspiration</Text>
                     <Text fontSize={['xl', 'xl', 'sm']} textAlign={'center'} fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Our Artists</Text>
-                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
-                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Trending</Text>
-                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/artists'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Styles</Text>
+                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
+                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Trending</Text>
+                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Styles</Text>
                 </HStack>
                 <Flex textAlign={'right'} alignItems={'center'} gap={4}>
                     <form onSubmit={e => formHandler(e)}>
