@@ -42,24 +42,24 @@ const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photograph
                             rounded={'xl'}
                             as={motion.img}
                             m={'0 auto'}
-                            height={'600px'}
-                            w={'500px'}
+                            height={['350px', '600px']}
+                            w={['300px', '500px']}
                             objectFit='cover'
                             src={src.large2x}
                             alt={alt || `Photo made by: ${photographer}`} />
-                            <Flex mt={4} alignItems={'end'}>
-                                <Heading color={avg_color || '#ff436cff'}>{photographer}</Heading>
-                                <Box ml={'auto'}>
-                                    <Text fontSize={'1rem'}  color={'#85888c'}><Text color={'#85888c'} mr={2} fontSize={'0.7rem'} className="fa-solid fa-heart"></Text>{(Math.random()).toFixed(2)}k</Text>
+                            <Flex mt={[2, 4]} alignItems={['end', 'end']} flexDir={['row', 'row']} justifyContent={'space-between'} flexWrap={'wrap'}>
+                                <Heading fontSize={['2xl', '4xl']} color={avg_color || '#ff436cff'}>{photographer}</Heading>
+                                <Box display={'flex'} alignItems={'center'} gap={4}>
+                                    <Text fontSize={['sm', '1rem']}  color={'#85888c'}><Text color={'#85888c'} mr={2} fontSize={'0.7rem'} className="fa-solid fa-heart"></Text>{(Math.random()).toFixed(2)}k</Text>
                                     <Text fontSize={'1rem'}  color={'#85888c'}><Text color={'#85888c'} mr={2} fontSize={'0.7rem'} className="fa-solid fa-eye"></Text>{(Math.random()).toFixed(2)}k</Text>
                                 </Box>
                             </Flex>
-                            <Box display={'flex'} gap={1} alignItems={'center'} mb={4}>
+                            <Box display={'flex'} flexWrap={'wrap'} gap={1} alignItems={'center'} mb={4}>
                                 {renderedHashTags}
                             </Box>
                             <Box mt={2} display={'flex'} alignItems={'center'} gap={2}>
-                                <Button bgColor={avg_color || "#ff436cff"} color={'white'} variant={'solid'}><Text mr={2} className="fa-regular fa-heart"></Text>Like</Button>
-                                <Button onClick={downloadHandler} leftIcon={<DownloadIcon />} color={avg_color || '#ff436cff'} border={`2px solid ${avg_color}`} variant={'outline'}>Download</Button>
+                                <Button fontSize={['sm', 'lg']} bgColor={avg_color || "#ff436cff"} color={'white'} variant={'solid'}><Text mr={2} className="fa-regular fa-heart"></Text>Like</Button>
+                                <Button fontSize={['sm', 'lg']} onClick={downloadHandler} leftIcon={<DownloadIcon />} color={avg_color || '#ff436cff'} border={`2px solid ${avg_color}`} variant={'outline'}>Download</Button>
                             </Box>
                         </ModalBody>
                         <ModalFooter>
