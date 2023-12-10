@@ -15,7 +15,7 @@ interface ImageModalProps extends ImageAnimatedProps{
 
 const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photographer, src, alt, isOpen, hashTags, id}) => {
     const dispatch = useAppDispatch()
-    const { isAuth } = useAppSelector(state => state.user)
+    const { isAuth, user } = useAppSelector(state => state.user)
     const navigate = useNavigate()
     const renderedHashTags = hashTags.map(hashTag => {
         return <Text key={id} fontStyle={'italic'}>#{hashTag}</Text>
@@ -45,6 +45,10 @@ const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photograph
         else
             navigate('/auth?var=logIn')
     }
+    const checkIfLiked = ():boolean => {
+        const found = user.liked?.find(item => item.id === id)
+        return found ? true : false
+    }
     return(
         <Modal onClose={closeImage} size={'xl'} isOpen={isOpen} isCentered>
                     <ModalOverlay/>
@@ -70,7 +74,7 @@ const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photograph
                                 {renderedHashTags}
                             </Box>
                             <Box mt={2} display={'flex'} alignItems={'center'} gap={2}>
-                                <Button onClick={likeHandler} fontSize={['sm', 'lg']} bgColor={avg_color || "#ff436cff"} color={'white'} variant={'solid'}><Text mr={2} className="fa-regular fa-heart"></Text>Like</Button>
+                                <Button onClick={likeHandler} fontSize={['sm', 'lg']} bgColor={avg_color || "#ff436cff"} color={'white'} variant={'solid'}><Text mr={2} className={`${checkIfLiked() ? 'fa-solid' : 'fa-regular'} fa-heart`}></Text>Like</Button>
                                 <Button fontSize={['sm', 'lg']} onClick={downloadHandler} leftIcon={<DownloadIcon />} color={avg_color || '#ff436cff'} border={`2px solid ${avg_color}`} variant={'outline'}>Download</Button>
                             </Box>
                         </ModalBody>

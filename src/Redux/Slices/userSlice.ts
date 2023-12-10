@@ -94,11 +94,14 @@ const userSlice = createSlice({
         addToLiked: (state, action) => {
             if(state.user.liked === undefined)
                 state.user.liked = [action.payload]
-            else
-                state.user.liked.push(action.payload)
+            else{
+                const found = state.user.liked.find(item => item.id === action.payload.id)
+                if(found)
+                    state.user.liked = state.user.liked.filter(item => item.id !== action.payload.id)
+                else
+                    state.user.liked.push(action.payload)
+            }
 
-            console.log(action.payload)
-            alert('Liked')
         }
     },
     extraReducers: builder => {
