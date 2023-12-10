@@ -3,6 +3,9 @@ import { DownloadIcon, CloseIcon} from '@chakra-ui/icons'
 import { ImageAnimatedProps } from './ImageAnimated'
 import { motion } from "framer-motion"
 import { url } from 'inspector'
+import { useAppDispatch, useAppSelector } from '../../../Redux/hooks'
+import { addToLiked } from '../../../Redux/Slices/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 interface ImageModalProps extends ImageAnimatedProps{
     openImage: () => void
@@ -11,6 +14,9 @@ interface ImageModalProps extends ImageAnimatedProps{
 }
 
 const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photographer, src, alt, isOpen, hashTags, id}) => {
+    const dispatch = useAppDispatch()
+    const { isAuth } = useAppSelector(state => state.user)
+    const navigate = useNavigate()
     const renderedHashTags = hashTags.map(hashTag => {
         return <Text key={id} fontStyle={'italic'}>#{hashTag}</Text>
     })
@@ -33,6 +39,12 @@ const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photograph
         // Remove the anchor tag from the body
         // document.body.removeChild(aTag);
     };
+    const likeHandler = ():void => {
+        if(isAuth)
+            dispatch(addToLiked({avg_color, photographer, src, alt, hashTags, id}))
+        else
+            navigate('/auth?var=logIn')
+    }
     return(
         <Modal onClose={closeImage} size={'xl'} isOpen={isOpen} isCentered>
                     <ModalOverlay/>
@@ -58,7 +70,7 @@ const ImageModal:React.FC<ImageModalProps> = ({closeImage, avg_color, photograph
                                 {renderedHashTags}
                             </Box>
                             <Box mt={2} display={'flex'} alignItems={'center'} gap={2}>
-                                <Button fontSize={['sm', 'lg']} bgColor={avg_color || "#ff436cff"} color={'white'} variant={'solid'}><Text mr={2} className="fa-regular fa-heart"></Text>Like</Button>
+                                <Button onClick={likeHandler} fontSize={['sm', 'lg']} bgColor={avg_color || "#ff436cff"} color={'white'} variant={'solid'}><Text mr={2} className="fa-regular fa-heart"></Text>Like</Button>
                                 <Button fontSize={['sm', 'lg']} onClick={downloadHandler} leftIcon={<DownloadIcon />} color={avg_color || '#ff436cff'} border={`2px solid ${avg_color}`} variant={'outline'}>Download</Button>
                             </Box>
                         </ModalBody>

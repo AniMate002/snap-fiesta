@@ -1,3 +1,5 @@
+import { PhotoWithHashTags } from "./Slices/imageSlice"
+
 export type Image = {
     id: number
     url: string
@@ -16,6 +18,8 @@ export interface userI {
     name?: string
     role?: string
     avatar?: string
+    myWorks?: PhotoWithHashTags[]
+    liked?: PhotoWithHashTags[]
 }
 
 export interface formLogInI {

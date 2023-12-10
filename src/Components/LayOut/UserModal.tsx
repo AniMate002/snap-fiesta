@@ -26,7 +26,7 @@ const UserModal:React.FC<UserModalI> = ({user}) => {
                         <Avatar src={user.avatar} size={'lg'} name={user.name} rounded={'full'} objectFit={'cover'} />
                         <Text mt={2} fontWeight={'medium'}>{user.name}</Text>
                         <VStack mt={7} alignSelf={'flex-start'} alignItems={'start'} spacing={4} w={'100%'}>
-                            <Text fontSize={'sm'} color={'black'} as={Link} to={'/myprofile'} variant={'ghost'}>My profile</Text>
+                            <Text fontSize={'sm'} color={'black'} as={Link} to={'/myprofile?type=My+works'} variant={'ghost'}>My profile</Text>
                             <Text fontSize={'sm'} color={'black'} as={Link} variant={'ghost'}>Work preferences</Text>
                             <Text fontSize={'sm'} color={'black'} as={Link} variant={'ghost'}>Settings</Text>
                             <Divider w={'100%'}/>

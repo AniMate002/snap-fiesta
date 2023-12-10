@@ -6,7 +6,7 @@ import { AriaAttributes } from 'react'
 import axios from 'axios'
 
 const KEY:string = 'bsRsiBMCCMWqV1vwrqCUTkXwfkz8e8DKwt4xqXa2Lthfsr3DQ8xh4NMF'
-const client = createClient(KEY)
+export const client = createClient(KEY)
 const query:string = 'Nature'
 
 export interface PhotoWithHashTags extends Photo{

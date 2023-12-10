@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice, isAction } from "@reduxjs/toolkit";
-import { formLogInI, userI } from "../types";
+import { chooseRandomHashtags, formLogInI, userI } from "../types";
 import axios from "axios";
 import { act } from "react-dom/test-utils";
 import { addAbortSignal } from "stream";
 import { error } from "console";
+import { client } from "./imageSlice";
+import { Photos } from "pexels";
+import { isUndefined } from "util";
 
 interface UserInitialStateI {
     isAuth: boolean
@@ -64,6 +67,20 @@ export const logInUser = createAsyncThunk<userI, formLogInI, {rejectValue: strin
     }
 })
 
+
+export const generateMyWorks = createAsyncThunk('user/generateMyWorks',async (_, {rejectWithValue}) => {
+    try{
+        const res = await client.photos.curated({per_page:10, page:5}) as Photos
+        const data = res.photos
+        if(!data)
+            throw new Error('error has accured')
+        return data
+    }catch(error){
+        const errorMessage = error instanceof Error ? error.message : 'Error has accured'
+        return rejectWithValue(errorMessage)
+    }
+})
+
 const userSlice = createSlice({
     initialState,
     name: 'user',
@@ -73,6 +90,15 @@ const userSlice = createSlice({
             state.isAuth = false
             state.error = null
             state.isLoading = false
+        },
+        addToLiked: (state, action) => {
+            if(state.user.liked === undefined)
+                state.user.liked = [action.payload]
+            else
+                state.user.liked.push(action.payload)
+
+            console.log(action.payload)
+            alert('Liked')
         }
     },
     extraReducers: builder => {
@@ -83,7 +109,7 @@ const userSlice = createSlice({
             state.error = null
             state.isLoading = true
         })
-        .addCase(createUser.pending, (state, action) => {
+        .addCase(createUser.pending, (state) => {
             state.error = null
             state.isLoading = true
             state.isAuth = false
@@ -94,15 +120,32 @@ const userSlice = createSlice({
             state.user = action.payload
             state.isAuth = true
         })
-        .addCase(logInUser.pending, (state, acion) => {
+        .addCase(logInUser.pending, (state) => {
             state.isLoading = true
             state.error = null
             state.isAuth = false
         })
+        .addCase(generateMyWorks.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.error = null
+            const taggedImages = action.payload.map(item => {
+                const hashTagsToAdd = chooseRandomHashtags();
+                return {
+                    ...item,
+                    hashTags: hashTagsToAdd,
+                }
+            })
+            state.user.myWorks = taggedImages
+        })
+        .addCase(generateMyWorks.pending, (state) => {
+            state.isLoading = true
+            state.error = null
+        })
+
     }
 
 })
 
 
 export default userSlice.reducer
-export const { signOut } = userSlice.actions
+export const { signOut, addToLiked } = userSlice.actions

@@ -1,34 +1,28 @@
-import { Box, Button, Heading, Divider, Flex } from "@chakra-ui/react"
+import { Box, Button, Heading, Divider, Flex, Spinner } from "@chakra-ui/react"
 import { useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
+import MyWorks from "./ContentTypes/MyWorks"
+import { useAppSelector } from "../../Redux/hooks"
+import Liked from "./ContentTypes/Liked"
 
 
 
 
 const ProfileContent:React.FC = () => {
     const [search, setSearch] = useSearchParams()
+    const { isLoading, user } = useAppSelector(state => state.user)
     const changeTypeHandler = (type: string):void => {
         setSearch({type: type})
     }
-    const checkBg = (name: string):string => {
-        const query = search.get('type')
-        if(query === name)
-            return '#edf2f7ff'
-        else
-            return 'white'
-    }
-    useEffect(() => {
-        if(!search.get('type'))
-            setSearch({type: 'My works'})
-    }, [])
+    let content;
+    if(search.get('type') === 'My works')
+        content = <MyWorks {...user}/>
+    else if(search.get('type') === 'Liked')
+        content = <Liked {...user} />
     return(
         <Box>
-            <Divider my={10} colorScheme={'red.400'}/>
-            <Flex gap={4}>
-                <Button onClick={() => changeTypeHandler('My works')} fontSize={'sm'} bg={checkBg('My works')} rounded={'full'}>My works</Button>
-                <Button onClick={() => changeTypeHandler('Liked')} fontSize={'sm'} bg={checkBg('Liked')} rounded={'full'}>Liked</Button>
-                <Button onClick={() => changeTypeHandler('About')} fontSize={'sm'} bg={checkBg('About')} rounded={'full'}>About</Button>
-            </Flex>
+            <Heading textAlign={'center'} my={5} as={'h2'}>{search.get('type')}</Heading>
+            {isLoading ?  <Spinner display={'block'} mx={'auto'} my={20} color={'red.400'} size={'xl'} thickness={'5px'}/>  : content}
         </Box>
     )
 }
