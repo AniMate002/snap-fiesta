@@ -38,6 +38,18 @@ export interface formFilterI {
     color: string
 }
 
+export interface LinksI {
+    messenger?: string
+    facebook?: string
+    x?: string
+    github?: string
+}
+
+export interface LinkI {
+    name: string
+    href: string
+}
+
 export const HASHTAGS: Array<string> = [
     "Serene", "Calm", "Joy", "Elegance", "Charm", "Grace", "Pure", "Tranquil", "Simplicity", "Peace",
     "Ease", "Minimal", "Gentle", "Quiet", "Kindness", "Warmth", "Bliss", "Harmony", "Gratitude", "Cheer",

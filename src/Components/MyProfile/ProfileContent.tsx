@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom"
 import MyWorks from "./ContentTypes/MyWorks"
 import { useAppSelector } from "../../Redux/hooks"
 import Liked from "./ContentTypes/Liked"
+import About from "./ContentTypes/About"
 
 
 
@@ -19,6 +20,8 @@ const ProfileContent:React.FC = () => {
         content = <MyWorks {...user}/>
     else if(search.get('type') === 'Liked')
         content = <Liked {...user} />
+    else if(search.get('type') === 'About')
+        content = <About />
     return(
         <Box>
             <Heading textAlign={'center'} my={5} as={'h2'}>{search.get('type')}</Heading>
