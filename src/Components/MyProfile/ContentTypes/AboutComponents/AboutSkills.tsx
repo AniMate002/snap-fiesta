@@ -15,7 +15,7 @@ const AboutSkills:React.FC<AboutSkillsI> = ({skill, skills, addSkillHandler, del
     })
 
     return ( 
-        <Box>
+        <Box ml={'-200px'}>
             <Text textDecoration={'underline'} color={'red.400'} fontWeight={'medium'} fontSize={'xl'} mb={2}>Skills</Text>
             <Text maxWidth={'300px'} display={'flex'} flexWrap={'wrap'} my={5}>{skills.length === 0 ? <Text color={'grey'}>No skills set</Text> : renderedSkills}</Text>
             <Popover>
@@ -28,7 +28,7 @@ const AboutSkills:React.FC<AboutSkillsI> = ({skill, skills, addSkillHandler, del
                     <PopoverHeader>Add skill</PopoverHeader>
                     <PopoverBody>
                         <form onSubmit={e => addSkillHandler(e)}>
-                            <Input value={skill} onChange={(e) => setSkill(e.target.value)} type="text" placeholder="Enter your skill..."/>
+                            <Input focusBorderColor="red.400" value={skill} onChange={(e) => setSkill(e.target.value)} type="text" placeholder="Enter your skill..."/>
                             <Button type={'submit'} isDisabled={skill.trim() === ''} mt={2}>Enter</Button>
                         </form>
                     </PopoverBody>

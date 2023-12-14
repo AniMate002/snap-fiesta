@@ -1,5 +1,5 @@
 import {Popover, PopoverTrigger, Portal, PopoverContent, VStack, Text, Avatar, Box, Divider} from '@chakra-ui/react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { userI } from '../../Redux/types'
 import { useAppDispatch } from '../../Redux/hooks'
 import { signOut } from '../../Redux/Slices/userSlice'
@@ -10,9 +10,11 @@ interface UserModalI {
 
 const UserModal:React.FC<UserModalI> = ({user}) => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const signOutHandler = ():void => {
-        dispatch(signOut())
+        navigate('/')
+        document.location.reload()
     }
     return(
         <Popover>

@@ -8,11 +8,10 @@ interface AboutLinksI {
     links: LinkI[]
     setLinks: (links: LinkI[]) => void
     AddLinkHandler: (link: LinkI) => void
-    deleteLinkHandler: (href: string) => void
 }
 
 
-const AboutLinks:React.FC<AboutLinksI> = ({links, setLinks, AddLinkHandler, deleteLinkHandler}) => {
+const AboutLinks:React.FC<AboutLinksI> = ({links, setLinks, AddLinkHandler}) => {
     const [radio, setRadio] = useState<string>('x-twitter')
     const [href, setHref] = useState<string>('')
 
@@ -24,7 +23,7 @@ const AboutLinks:React.FC<AboutLinksI> = ({links, setLinks, AddLinkHandler, dele
     }
 
     const renderedLinks = links.map(link => {
-        return <Button key={link.href} onClick={() => deleteLinkHandler(link.href)} target='_blank' as={Link} to={link.href}><Text className={`fa-brands fa-${link.name}`}></Text></Button>
+        return <Button key={link.href} target='_blank' as={Link} to={link.href}><Text className={`fa-brands fa-${link.name}`}></Text></Button>
     })
 
     return (  

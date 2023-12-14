@@ -1,5 +1,7 @@
 import { PhotoWithHashTags } from "./Slices/imageSlice"
 
+export const localStorageSnapFiestaAboutConfig:string = 'SnapFiestaAboutConfig';
+
 export type Image = {
     id: number
     url: string
@@ -65,4 +67,11 @@ export const chooseRandomHashtags = ():Array<string> => {
         arrayToReturn.push(HASHTAGS[randomNumber])
     }
     return arrayToReturn;
+}
+
+
+export interface confI { 
+    description: string
+    skills: Array<string>
+    links: LinkI[]
 }
