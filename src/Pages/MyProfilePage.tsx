@@ -24,7 +24,7 @@ const MyProfilePage:React.FC = () => {
     return(
         <Container maxW={'1500px'}>
             <ProfileTitle />
-            <Divider my={10} colorScheme={'red.400'}/>
+            <Divider my={[5, 10]} colorScheme={'red.400'}/>
             <ProfileNavigation />
             <ProfileContent />
         </Container>

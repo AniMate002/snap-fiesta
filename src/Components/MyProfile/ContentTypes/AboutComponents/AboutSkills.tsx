@@ -15,7 +15,7 @@ const AboutSkills:React.FC<AboutSkillsI> = ({skill, skills, addSkillHandler, del
     })
 
     return ( 
-        <Box ml={'-200px'}>
+        <Box ml={[0,0,'-200px']}>
             <Text textDecoration={'underline'} color={'red.400'} fontWeight={'medium'} fontSize={'xl'} mb={2}>Skills</Text>
             <Text maxWidth={'300px'} display={'flex'} flexWrap={'wrap'} my={5}>{skills.length === 0 ? <Text color={'grey'}>No skills set</Text> : renderedSkills}</Text>
             <Popover>

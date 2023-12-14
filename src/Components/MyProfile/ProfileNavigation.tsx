@@ -24,10 +24,10 @@ const ProfileNavigation:React.FC = () => {
             setSearch({type: 'My works'})
     }, [])
     return(
-        <Flex gap={4}>
-                <Button onClick={() => changeTypeHandler('My works')} fontSize={'sm'} bg={checkBg('My works')} rounded={'full'}>My works</Button>
-                <Button onClick={() => changeTypeHandler('Liked')} fontSize={'sm'} bg={checkBg('Liked')} rounded={'full'}>Liked</Button>
-                <Button onClick={() => changeTypeHandler('About')} fontSize={'sm'} bg={checkBg('About')} rounded={'full'}>About</Button>
+        <Flex gap={4} justifyContent={['center','start']}>
+                <Button onClick={() => changeTypeHandler('My works')} fontSize={['12px', 'sm']} bg={checkBg('My works')} rounded={'full'}>My works</Button>
+                <Button onClick={() => changeTypeHandler('Liked')} fontSize={['12px', 'sm']} bg={checkBg('Liked')} rounded={'full'}>Liked</Button>
+                <Button onClick={() => changeTypeHandler('About')} fontSize={['12px', 'sm']} bg={checkBg('About')} rounded={'full'}>About</Button>
             </Flex>
     )
 }

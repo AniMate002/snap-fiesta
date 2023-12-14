@@ -29,7 +29,7 @@ const AboutLinks:React.FC<AboutLinksI> = ({links, setLinks, AddLinkHandler}) => 
     return (  
         <VStack alignItems={'start'}>
             <Text textDecoration={'underline'} color={'red.400'} fontWeight={'medium'} fontSize={'xl'} mb={2}>Links</Text>
-            <Text maxWidth={'300px'} display={'flex'} flexWrap={'wrap'} my={5} gap={2}>
+            <Text maxWidth={'300px'} display={'flex'} flexWrap={'wrap'} my={[3,3,5]} gap={2}>
                 {links.length === 0 ? 
                 <Text color={'grey'}>No links added</Text> 
                 : 

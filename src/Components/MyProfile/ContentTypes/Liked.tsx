@@ -10,9 +10,9 @@ const Liked:React.FC<LikedI> = ({liked}) => {
     })
     return(
         liked === undefined || liked.length === 0 ?  
-        <Heading textAlign={'center'} color={'red.400'} height={'20vh'} mt={10} fontSize={'2xl'}>You haven't liked anything yet <i className="fa-regular fa-face-sad-tear fa-bounce"></i></Heading> 
+        <Heading textAlign={'center'} color={'red.400'} height={'20vh'} mt={[5, 5, 7, 10]} fontSize={['xl', '2xl']}>You haven't liked anything yet <i className="fa-regular fa-face-sad-tear fa-bounce"></i></Heading> 
         :
-        <SimpleGrid columns={4} gap={10}>
+        <SimpleGrid mb={10} columns={[1, 2, 3, 4]} gap={10}>
             {renderedLiked}
         </SimpleGrid>  
 

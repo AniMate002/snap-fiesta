@@ -67,8 +67,8 @@ const About:React.FC = () => {
     }, [])
 
     return(
-        <Box>
-            <Box mt={10} display={'flex'} justifyContent={'space-around'} alignItems={'start'} height={'fit-content'}>
+        <Box mx={'auto'} w={['90%', '90%', '100%']}>
+            <Box mt={10} display={'flex'} flexDir={['column', 'column', 'row']} flexWrap={'wrap'} gap={10} justifyContent={'space-around'} alignItems={'start'} height={'fit-content'}>
                 <AboutTextArea description={description} setDescription={setDescription}/>
                 <AboutSkills addSkillHandler={addSkillHandler} deleteSkillHandler={deleteSkillHandler} setSkill={setSkill} skill={skill} skills={skills}/>
                 <AboutLinks links={links} AddLinkHandler={AddLinkHandler} setLinks={setLinks}/>

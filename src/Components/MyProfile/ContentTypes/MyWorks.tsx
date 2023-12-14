@@ -9,7 +9,7 @@ const MyWorks:React.FC<MyWorksI> = ({myWorks}) => {
         return <ImageCard key={item.id} {...item} />
     })
     return(
-        <SimpleGrid mb={20} columns={4} gap={10}>
+        <SimpleGrid mb={20} columns={[1, 2, 3, 4]} gap={10}>
             {renderedWorks}
         </SimpleGrid>
     )
