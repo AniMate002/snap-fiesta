@@ -14,6 +14,7 @@ import { useAppDispatch } from "./Redux/hooks";
 import { createUser } from "./Redux/Slices/userSlice";
 import AuthPage from "./Pages/AuthPage";
 import MyProfilePage from "./Pages/MyProfilePage";
+import ArtistsPage from "./Pages/ArtistsPage";
 
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
           <Route index element={<HomePage />}/>
           <Route path="/inspiration" element={<InspirationPage />}/>
           <Route path="/myprofile" element={<MyProfilePage />} />
+          <Route path="/artists" element={<ArtistsPage />} />
         </Route>
       </Routes>
     </>

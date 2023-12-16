@@ -75,3 +75,23 @@ export interface confI {
     skills: Array<string>
     links: LinkI[]
 }
+
+
+export interface artistI {
+    first_name: string,
+    last_name: string,
+    email: string,
+    phone: string,
+    street: string,
+    state: string,
+    country: string,
+    longitude: number,
+    id: number,
+    gender: string,
+    date_of_birth: string,
+    job: string,
+    city: string,
+    zipcode: string,
+    latitude: number,
+    profile_picture: string
+}
