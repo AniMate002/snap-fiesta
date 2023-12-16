@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { artistI, userI } from "../types"
+import { client } from "./imageSlice"
+import { Photo, Photos } from "pexels"
 
 const BASIC_ARTISTS_URL:string = 'https://api.slingacademy.com/v1/sample-data/users'
 
@@ -29,6 +31,21 @@ export const fetchArtists = createAsyncThunk<artistI[], number, {rejectValue: st
         return rejectWithValue(errorMessage)
     }
 })
+
+// export const getWorksOfArtists = createAsyncThunk('artists/getWorkOfArtist',async (id:number, {rejectWithValue}) => {
+//     try{
+//         const res = await client.photos.curated({per_page: 6, page: id * 10}) as Photos
+//         const data = res.photos
+//         if(!data)
+//             throw new Error('error has accured')
+//         return data
+//     }catch(e){
+//         if(e instanceof Error)
+//             return rejectWithValue(e.message)
+//         else
+//             return rejectWithValue('Error has accured')
+//     }
+// })
 
 const artistsSlice = createSlice({
     name: 'artists',
