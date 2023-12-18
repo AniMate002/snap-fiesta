@@ -95,3 +95,26 @@ export interface artistI {
     latitude: number,
     profile_picture: string
 }
+
+export interface genderI{
+    male?: boolean
+    female?: boolean
+}
+
+export interface experienceI {
+    '0-2'?:boolean
+    '2-5'?:boolean
+    '5-10'?:boolean
+    '10+'?:boolean
+}
+
+export interface ArtistsFormStateI extends Record<string, any> {
+    keyword?:string
+    country?: string
+    male?: boolean
+    female?: boolean
+    '0-2'?:boolean
+    '2-5'?:boolean
+    '5-10'?:boolean
+    '10+'?:boolean
+}

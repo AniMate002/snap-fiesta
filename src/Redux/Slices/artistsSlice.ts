@@ -32,20 +32,19 @@ export const fetchArtists = createAsyncThunk<artistI[], number, {rejectValue: st
     }
 })
 
-// export const getWorksOfArtists = createAsyncThunk('artists/getWorkOfArtist',async (id:number, {rejectWithValue}) => {
-//     try{
-//         const res = await client.photos.curated({per_page: 6, page: id * 10}) as Photos
-//         const data = res.photos
-//         if(!data)
-//             throw new Error('error has accured')
-//         return data
-//     }catch(e){
-//         if(e instanceof Error)
-//             return rejectWithValue(e.message)
-//         else
-//             return rejectWithValue('Error has accured')
-//     }
-// })
+export const searchArtists = createAsyncThunk<artistI[], {searchQuery:string | undefined, page:number}, {rejectValue: string}>('artists/searchArtists',async ({searchQuery, page}, {rejectWithValue}) => {
+    try{
+        const res = await axios.get(BASIC_ARTISTS_URL + `?search=${searchQuery}&limit=100`)
+        const data = res.data
+        if(!data)
+            throw new Error('error has accured')
+        console.log(data)
+        return data.users as artistI[]
+    }catch(error){
+        const errorMessage = error instanceof Error ? error.message : 'Arror has accured'
+        return rejectWithValue(errorMessage)
+    }
+})
 
 const artistsSlice = createSlice({
     name: 'artists',
@@ -59,6 +58,15 @@ const artistsSlice = createSlice({
             state.error = null
         })
         .addCase(fetchArtists.pending, (state) => {
+            state.isLoading = true;
+            state.error = null
+        })
+        .addCase(searchArtists.fulfilled, (state, action) => {
+            state.artists = action.payload
+            state.isLoading = false
+            state.error = null
+        })
+        .addCase(searchArtists.pending, (state) => {
             state.isLoading = true;
             state.error = null
         })
