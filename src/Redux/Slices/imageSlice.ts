@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, AnyAction, PayloadAction } from '@reduxjs/toolkit'
 import {createClient} from 'pexels'
 import { Image, chooseRandomHashtags } from '../types'
 import {Photos, Photo} from 'pexels/dist/types'
@@ -59,7 +59,7 @@ export const fetchImages = createAsyncThunk<Photo[], number, {rejectValue: strin
 
 export const searchImages = createAsyncThunk<Photo[], searchImagesI, {rejectValue: string, state:{images: ImagesState}}>('images/searchImages',async ({query, page}, {rejectWithValue, getState}) => {
     try {
-        const res = await client.photos.search({query: query, per_page: 24, page: page || Math.floor(getState().images.images.length / 24) + 1}) as Photos
+        const res = await client.photos.search({query: query.toLocaleLowerCase(), per_page: 24, page: page || Math.floor(getState().images.images.length / 24) + 1}) as Photos
         const data = res.photos
         if(!data)
             throw new Error('Error')
@@ -72,7 +72,7 @@ export const searchImages = createAsyncThunk<Photo[], searchImagesI, {rejectValu
 
 export const fetchPhotoOfTheDay = createAsyncThunk<Photo[], void, {rejectValue: string, state:{images:ImagesState}}>('images/fetchPhotoOfTheDay', async (_ ,{rejectWithValue, getState}) => {
     try {
-        const res = await client.photos.search({query: getState().images.inspiration.wordOfTheDay, per_page: 1, page:1}) as Photos
+        const res = await client.photos.search({query: getState().images.inspiration.wordOfTheDay.toLocaleLowerCase(), per_page: 1, page:1}) as Photos
         const data = res.photos 
         if(!data)
             throw new Error('error has accured')
@@ -148,8 +148,16 @@ const photoSlice = createSlice({
             state.error = null
             state.isLoading = true
         })
+        .addMatcher(isError, (state, action: PayloadAction<string>) => {
+            state.error = action.payload
+            state.isLoading = false
+        })
     }
 })
+
+function isError(action: AnyAction){
+    return action.type.endsWith('rejected')
+}
 
 export default photoSlice.reducer
 export const { resetImages, filterImages, chooseWOTD } = photoSlice.actions

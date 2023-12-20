@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, isAction } from "@reduxjs/toolkit";
+import { AnyAction, createAsyncThunk, createSlice, isAction, PayloadAction } from "@reduxjs/toolkit";
 import { chooseRandomHashtags, formLogInI, userI } from "../types";
 import axios from "axios";
 import { act } from "react-dom/test-utils";
@@ -102,6 +102,9 @@ const userSlice = createSlice({
                     state.user.liked.push(action.payload)
             }
 
+        },
+        resetError: (state, action: PayloadAction<void>) => {
+            state.error = null
         }
     },
     extraReducers: builder => {
@@ -144,11 +147,19 @@ const userSlice = createSlice({
             state.isLoading = true
             state.error = null
         })
+        .addMatcher(isError, (state, action: PayloadAction<string>) => {
+            state.error = action.payload
+            state.isLoading = false
+            state.isAuth = false
+        })
 
     }
 
 })
 
+function isError(action:AnyAction){
+    return action.type.endsWith('rejected')
+}
 
 export default userSlice.reducer
-export const { signOut, addToLiked } = userSlice.actions
+export const { signOut, addToLiked, resetError } = userSlice.actions

@@ -32,11 +32,11 @@ const LogInComponent:React.FC<logInComponentProps> = ({changeVariant}) => {
             <form onSubmit={(e) => submitHandler(e)}>
                 <Box position={'relative'} mb={10}>
                     <Text rounded={'full'} fontSize={['md', 'xl']} position={'absolute'} p={2} bg={'white'} zIndex={90} top={-6} left={6} cursor={'default'} color={'grey'}>Email</Text>
-                    <Input value={form.email} onChange={e => setForm(prev => {return {...prev, email: e.target.value}})} bgColor={'white'} focusBorderColor="red.400" type="email" borderColor={'red.200'} borderWidth={2} rounded={'full'} py={[3, 7]} px={7} fontSize={'xl'}/>
+                    <Input required value={form.email} onChange={e => setForm(prev => {return {...prev, email: e.target.value}})} bgColor={'white'} focusBorderColor="red.400" type="email" borderColor={'red.200'} borderWidth={2} rounded={'full'} py={[3, 7]} px={7} fontSize={'xl'}/>
                 </Box>
                 <Box position={'relative'}>
                     <Text rounded={'full'} fontSize={['md', 'xl']} position={'absolute'} p={2} bg={'white'} zIndex={90} top={-6} left={6} cursor={'default'} color={'grey'}>Password</Text>
-                    <Input value={form.password} onChange={e => setForm(prev => {return {...prev, password: e.target.value}})} focusBorderColor="red.400" type="password" borderColor={'red.200'} borderWidth={2} rounded={'full'} py={[3, 7]} px={7} fontSize={'xl'}/>
+                    <Input required value={form.password} onChange={e => setForm(prev => {return {...prev, password: e.target.value}})} focusBorderColor="red.400" type="password" borderColor={'red.200'} borderWidth={2} rounded={'full'} py={[3, 7]} px={7} fontSize={'xl'}/>
                 </Box>
                 <Text display={'flex'} justifyContent={'end'} fontSize={['sm','md']} mt={2} color={'grey'} as={Link}>Forget password?</Text>
                 <Button mt={[5, 10]} bg={'red.400'} color={'white'} py={[3, 7]} rounded={'full'} w={'100%'} type="submit">Log in</Button>

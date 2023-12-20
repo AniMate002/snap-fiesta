@@ -7,6 +7,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 interface ArtistSearchFormI {
     form: ArtistsFormStateI
     setForm: (form: ArtistsFormStateI) => void
+    display: Array<string>
 }
 
 type Inputs = {
@@ -20,7 +21,7 @@ type Inputs = {
     '10+': boolean
 }
 
-const ArtistSearchForm:React.FC<ArtistSearchFormI> = ({form, setForm}) => {
+const ArtistSearchForm:React.FC<ArtistSearchFormI> = ({form, setForm, display}) => {
     const { register, handleSubmit, formState: {errors, isValid}} = useForm<Inputs>()
     const [search, setSearch] = useSearchParams()
     
@@ -49,17 +50,17 @@ const ArtistSearchForm:React.FC<ArtistSearchFormI> = ({form, setForm}) => {
     
 
     return (  
-        <Box border={'2px solid #edf2f7'} height={'fit-content'} p={5} rounded={'xl'} bgColor={'red.50'}>
+        <Box border={['none','none','none', '2px solid #edf2f7']} height={'fit-content'} p={5} rounded={'xl'} bgColor={['white', 'white', 'white','red.50']} display={display}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Box>
-                    <Text fontWeight={'bold'} mb={4} fontSize={'sm'}>Keyword search</Text>
+                    <Text fontWeight={'bold'} mb={[2,3,4,4]} fontSize={'sm'}>Keyword search</Text>
                     <Input {...register('keyword')}  focusBorderColor="red.400" bgColor={'red.50'} _placeholder={{color: 'red.400', fontsize: 'sm'}} borderWidth={1} type="text" placeholder="Search..."/>
                 </Box>
-                <Box mt={10}>
-                    <Text fontWeight={'bold'} mb={3} fontSize={'sm'}>Country</Text>
+                <Box mt={[7,8,9,10]}>
+                    <Text fontWeight={'bold'} mb={[2,3,3,3]} fontSize={'sm'}>Country</Text>
                     <Input {...register('country')} color={'red.400'} focusBorderColor="red.400" bgColor={'red.50'} _placeholder={{color: 'red.400'}} borderWidth={1} type="text" placeholder="Search..."/>
                 </Box>
-                <Box mt={10}>
+                <Box mt={[7,8,9,10]}>
                     <Text fontWeight={'bold'} mb={3} fontSize={'md'}>Gender</Text>
                     <CheckboxGroup>
                         <Checkbox {...register('male')} size={'md'} mr={4} colorScheme="blue">Male</Checkbox>
@@ -78,7 +79,7 @@ const ArtistSearchForm:React.FC<ArtistSearchFormI> = ({form, setForm}) => {
                         </SimpleGrid>
                     </CheckboxGroup>
                 </Box>
-                <Button bgColor={'red.400'} rounded={'full'} color={'white'} fontSize={'sm'} display={'block'} mx={'auto'} mt={10} type="submit">Search</Button>
+                <Button w={'100%'} bgColor={'red.400'} rounded={'full'} color={'white'} fontSize={'sm'} display={'block'} mx={'auto'} mt={[7,8,9,10]} type="submit">Search</Button>
             </form>
         </Box>
     );

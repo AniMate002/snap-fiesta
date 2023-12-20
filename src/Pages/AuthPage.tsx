@@ -5,11 +5,13 @@ import { useEffect, useState } from "react"
 import LogInComponent from "../Components/Auth/LogInComponent"
 import SignUpComponent from "../Components/Auth/SignUpComponent"
 import LoadingModalWindow from "../Components/LodaingModalWindow"
-import { useAppSelector } from "../Redux/hooks"
+import { useAppDispatch, useAppSelector } from "../Redux/hooks"
+import { resetError } from "../Redux/Slices/userSlice"
 
 const AuthPage:React.FC = () => {
     const [search, setSearch] = useSearchParams()
-    const { isAuth, isLoading } = useAppSelector(state => state.user)
+    const { isAuth, isLoading, error } = useAppSelector(state => state.user)
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
     useEffect(() => {
         if(!search.get('var'))
@@ -21,10 +23,11 @@ const AuthPage:React.FC = () => {
     }, [isAuth])
     const changeVariant = ():void => {
         setSearch({var: search.get('var') === 'logIn' ? 'signUp' : 'logIn'})
+        dispatch(resetError())
     }
     return(
         <Box display={['block', 'flex']} position={'relative'} alignItems={'stretch'}>
-            <LoadingModalWindow isLoading={isLoading}/>
+            <LoadingModalWindow error={error} isLoading={isLoading}/>
             <Box 
                 w={'50%'} 
                 h={'auto'}

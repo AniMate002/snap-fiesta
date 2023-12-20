@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { AnyAction, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
 import { artistI, userI } from "../types"
 import { client } from "./imageSlice"
@@ -34,7 +34,7 @@ export const fetchArtists = createAsyncThunk<artistI[], number, {rejectValue: st
 
 export const searchArtists = createAsyncThunk<artistI[], {searchQuery:string | undefined, page:number}, {rejectValue: string}>('artists/searchArtists',async ({searchQuery, page}, {rejectWithValue}) => {
     try{
-        const res = await axios.get(BASIC_ARTISTS_URL + `?search=${searchQuery}&limit=100`)
+        const res = await axios.get(BASIC_ARTISTS_URL + `?search=${searchQuery?.toLocaleLowerCase()}&limit=100`)
         const data = res.data
         if(!data)
             throw new Error('error has accured')
@@ -70,7 +70,15 @@ const artistsSlice = createSlice({
             state.isLoading = true;
             state.error = null
         })
+        .addMatcher(isError, (state, action: PayloadAction<string>) => {
+            state.error = action.payload
+            state.isLoading = false;
+        })
     }
 })
 
 export default artistsSlice.reducer
+
+function isError (action: AnyAction){
+    return action.type.endsWith('rejected')
+}
