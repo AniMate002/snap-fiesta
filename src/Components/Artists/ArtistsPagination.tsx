@@ -60,12 +60,12 @@ const ArtistsPagination:React.FC<ArtistsPaginationI> = ({page}) => {
     }, [page])
 
     return (  
-        <Flex mt={10} px={10} py={2} w={'fit-content'} alignItems={'center'} justifyContent={'center'} mx={'auto'} gap={2}>
-            <Button isDisabled={page === 1} mr={4} rounded={'full'} _hover={{bgColor:'red.400', color:'white'}} transition={'all 0.2s ease'} onClick={() => LoadMoreArtistsHandler(page-1)} bgColor={''} color={'red.400'}>
+        <Flex mt={10} py={2} w={'fit-content'} alignItems={'center'} justifyContent={'center'} mx={'auto'} gap={2}>
+            <Button isDisabled={page === 1} size={['sm', 'md']} mr={[1,3,4]} rounded={'full'} _hover={{bgColor:'red.400', color:'white'}} transition={'all 0.2s ease'} onClick={() => LoadMoreArtistsHandler(page-1)} bgColor={''} color={'red.400'}>
                 <i className="fa-solid fa-chevron-left"></i>
             </Button>
             {renderedButtons}
-            <Button isDisabled={page === 10} ml={4} rounded={'full'} _hover={{bgColor:'red.400', color:'white'}} transition={'all 0.2s ease'} onClick={() => LoadMoreArtistsHandler(page+1)} bgColor={''} color={'red.400'}>
+            <Button isDisabled={page === 10} size={['sm', 'md']} ml={[1,3,4]} rounded={'full'} _hover={{bgColor:'red.400', color:'white'}} transition={'all 0.2s ease'} onClick={() => LoadMoreArtistsHandler(page+1)} bgColor={''} color={'red.400'}>
                 <i className="fa-solid fa-chevron-right"></i>
             </Button>
         </Flex>

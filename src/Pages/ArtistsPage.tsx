@@ -52,7 +52,7 @@ const ArtistsPage:React.FC = () => {
                     </Collapse>
                 </Box>
             </Flex>
-            {/* <ArtistsPagination page={parseInt(search.get('page') || '0')}/> */}
+            <ArtistsPagination page={parseInt(search.get('page') || '0')}/>
         </Container>
     );
 }
