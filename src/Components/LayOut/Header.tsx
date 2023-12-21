@@ -38,7 +38,7 @@ const Header: React.FC = () => {
                 <HStack display={['none', 'none', 'flex']} ml={[0,0,2,'50px']} mr={[0,0,0,5,0]} spacing={10} alignItems={'center'}>
                     <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/inspiration'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Inspiration</Text>
                     <Text fontSize={['xl', 'xl', 'sm']} textAlign={'center'} fontWeight={'medium'} as={NavLink} to={'/artists?page=1'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Our Artists</Text>
-                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
+                    <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/hashtags'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
                     <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Trending</Text>
                     <Text fontSize={['xl', 'xl', 'sm']} fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Styles</Text>
                 </HStack>
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
                 <Box display={['flex', 'flex', 'none']} flexDirection={'column'} gap={4} borderBottom={'2px solid grey'} py={5} mx={4}>
                     <Text fontWeight={'medium'} as={NavLink} to={'/inspiration'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Inspiration</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/artists?page=1'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Our Artists</Text>
-                    <Text fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
+                    <Text fontWeight={'medium'} as={NavLink} to={'/hashtags'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>#HashTags</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Trending</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Styles</Text>
                     <Text fontWeight={'medium'} as={NavLink} to={'/auth?var=logIn'} shadow={'0 0 #ff436cff'} _hover={{textShadow: '-10px 10px #ff436cff',fontWeight:'bold', transition: 'all 0.2s ease'}}>Sing Up</Text>                          

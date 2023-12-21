@@ -27,6 +27,9 @@ type ImagesState = {
         wordOfTheDay: string
         imageOfTheDay: string
     }
+    hashTags: {
+        cardsImages: Photo[]
+    }
 }
 
 const initialState: ImagesState = {
@@ -37,6 +40,9 @@ const initialState: ImagesState = {
     inspiration: {
         wordOfTheDay: '',
         imageOfTheDay: ''
+    },
+    hashTags: {
+        cardsImages: []
     }
 }
 
@@ -80,6 +86,21 @@ export const fetchPhotoOfTheDay = createAsyncThunk<Photo[], void, {rejectValue: 
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Error has accured!'
         return rejectWithValue(errorMessage) 
+    }
+})
+
+export const fetchImagesForHashTagsCards = createAsyncThunk<Photo[], void, {rejectValue: string}>('images/fetchImagesForHashTagsCards', async (_, {rejectWithValue}) => {
+    try{
+        const res = await client.photos.curated({per_page: 30, page: 10}) as Photos
+        const data = res.photos
+        if(!data)
+            throw new Error('error has accured')
+        return data
+    }catch(e){
+        if(e instanceof Error)
+            return rejectWithValue(e.message)
+        else
+            return rejectWithValue('Error has accured')
     }
 })
 
@@ -147,6 +168,15 @@ const photoSlice = createSlice({
         .addCase(fetchPhotoOfTheDay.pending, (state) => {
             state.error = null
             state.isLoading = true
+        })
+        .addCase(fetchImagesForHashTagsCards.fulfilled, (state, action) => {
+            state.error = null;
+            state.isLoading = false;
+            state.hashTags.cardsImages = action.payload
+        })
+        .addCase(fetchImagesForHashTagsCards.pending, (state) => {
+            state.isLoading = true
+            state.error = null
         })
         .addMatcher(isError, (state, action: PayloadAction<string>) => {
             state.error = action.payload

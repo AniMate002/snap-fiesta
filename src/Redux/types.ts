@@ -118,3 +118,38 @@ export interface ArtistsFormStateI extends Record<string, any> {
     '5-10'?:boolean
     '10+'?:boolean
 }
+
+
+export const allHashTags = [
+    "Love",
+    "Happy",
+    "Smile",
+    "Nature",
+    "Peace",
+    "Joy",
+    "Fun",
+    "Explore",
+    "Friends",
+    "Family",
+    "Sunset",
+    "Adventure",
+    "Dream",
+    "Inspire",
+    "Gratitude",
+    "Chill",
+    "Laugh",
+    "Healthy",
+    "Motivate",
+    "Serenity",
+    "Kindness",
+    "Balance",
+    "Calm",
+    "Energy",
+    "Creativity",
+    "Hope",
+    "Positivity",
+    "Imagine",
+    "Harmony",
+    "Celebrate"
+  ]
+  

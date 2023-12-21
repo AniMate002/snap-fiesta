@@ -15,6 +15,8 @@ import { createUser } from "./Redux/Slices/userSlice";
 import AuthPage from "./Pages/AuthPage";
 import MyProfilePage from "./Pages/MyProfilePage";
 import ArtistsPage from "./Pages/ArtistsPage";
+import HashTagsPage from "./Pages/HashTagsPage";
+import 'swiper/css';
 
 
 const App: React.FC = () => {
@@ -32,6 +34,7 @@ const App: React.FC = () => {
           <Route path="/inspiration" element={<InspirationPage />}/>
           <Route path="/myprofile" element={<MyProfilePage />} />
           <Route path="/artists" element={<ArtistsPage />} />
+          <Route path="/hashtags" element={<HashTagsPage />} />
         </Route>
       </Routes>
     </>
