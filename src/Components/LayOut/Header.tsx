@@ -31,7 +31,7 @@ const Header: React.FC = () => {
         navigate('/?search=' + searchQuery)
     }
     return(
-        <Container maxW={'1500px'} py={7}>
+        <Container maxW={'1500px'} py={7} position={'sticky'} top={0} left={0} zIndex={100} bg={'white'}>
             <Flex  flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'} >
                 <Text onClick={onToggle} display={['inline-block', 'inline-block', 'none']} className="fa-solid fa-bars"><Heading ml={5} to={'/'} textAlign={'left'} fontSize={['2xl', '4xl']}  mt={[-1, -2]} as={Link}>SnapFiesta</Heading></Text>
                 <Heading to={'/'} textAlign={'left'} fontSize={['2xl', '4xl', '4xl']} display={['none', 'none', 'inline-block']} mt={[-1, -2]} as={Link}>SnapFiesta</Heading>
